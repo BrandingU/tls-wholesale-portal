@@ -1374,6 +1374,659 @@
         text-align: center;
       }
     }
+
+    /* =============================================
+       SUPERCHARGER SECTION
+       ============================================= */
+    .supercharger {
+      padding: var(--space-24) 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .supercharger::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 30% 50%, rgba(212,168,67,0.05) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 50%, rgba(212,168,67,0.03) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .supercharger-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-16);
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .supercharger-content { max-width: 520px; }
+
+    .supercharger-label {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      background: rgba(212,168,67,0.12);
+      border: 1px solid var(--gold-border);
+      color: var(--gold-bright);
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: var(--r-full);
+      margin-bottom: var(--space-6);
+    }
+
+    .supercharger-label svg {
+      width: 12px;
+      height: 12px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2.5;
+    }
+
+    .supercharger-headline {
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      color: var(--text-primary);
+      margin-bottom: var(--space-5);
+      line-height: 1.15;
+    }
+
+    .supercharger-headline span {
+      color: var(--gold);
+    }
+
+    .supercharger-description {
+      font-size: 1rem;
+      color: var(--text-body);
+      line-height: 1.7;
+      margin-bottom: var(--space-6);
+    }
+
+    .supercharger-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-4);
+      margin-bottom: var(--space-6);
+    }
+
+    .supercharger-stat {
+      background: var(--gold-subtle);
+      border: 1px solid var(--gold-border);
+      border-radius: var(--r-lg);
+      padding: var(--space-5);
+      text-align: center;
+    }
+
+    .supercharger-stat-number {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .supercharger-stat-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .supercharger-visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .supercharger-orb {
+      position: relative;
+      width: 340px;
+      height: 340px;
+    }
+
+    .supercharger-ring {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 1px solid rgba(212,168,67,0.15);
+      animation: pulse-ring 3s ease-in-out infinite;
+    }
+
+    .supercharger-ring:nth-child(2) {
+      inset: 20px;
+      border-color: rgba(212,168,67,0.2);
+      animation-delay: 0.5s;
+    }
+
+    .supercharger-ring:nth-child(3) {
+      inset: 40px;
+      border-color: rgba(212,168,67,0.25);
+      animation-delay: 1s;
+    }
+
+    .supercharger-ring:nth-child(4) {
+      inset: 60px;
+      border-color: rgba(212,168,67,0.3);
+      animation-delay: 1.5s;
+    }
+
+    @keyframes pulse-ring {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.03); opacity: 0.7; }
+    }
+
+    .supercharger-core {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%,
+        rgba(212,168,67,0.2) 0%,
+        rgba(212,168,67,0.08) 50%,
+        transparent 80%
+      );
+      border: 1px solid rgba(212,168,67,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 50px rgba(212,168,67,0.15);
+    }
+
+    .supercharger-core svg {
+      width: 60px;
+      height: 60px;
+      stroke: var(--gold);
+      fill: none;
+      stroke-width: 1;
+    }
+
+    /* =============================================
+       WHO THIS IS FOR
+       ============================================= */
+    .audience-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-5);
+      margin-top: var(--space-12);
+    }
+
+    .audience-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r-xl);
+      padding: var(--space-6);
+      text-align: center;
+      transition: all var(--t-base) var(--ease);
+    }
+
+    .audience-card:hover {
+      border-color: var(--gold-border);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+    }
+
+    .audience-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--r-md);
+      background: var(--gold-subtle);
+      border: 1px solid var(--gold-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto var(--space-4);
+    }
+
+    .audience-icon svg {
+      width: 22px;
+      height: 22px;
+      stroke: var(--gold);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .audience-card h4 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: var(--space-2);
+    }
+
+    .audience-card p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* =============================================
+       BUNDLES
+       ============================================= */
+    .bundles-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-5);
+      margin-top: var(--space-12);
+    }
+
+    .bundle-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r-xl);
+      padding: var(--space-7);
+      transition: all var(--t-base) var(--ease);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bundle-card:hover {
+      border-color: var(--gold-border);
+      transform: translateY(-3px);
+      box-shadow: 0 16px 50px rgba(0,0,0,0.35);
+    }
+
+    .bundle-tag {
+      display: inline-block;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: var(--gold-subtle);
+      border: 1px solid var(--gold-border);
+      padding: 3px 10px;
+      border-radius: var(--r-full);
+      margin-bottom: var(--space-3);
+    }
+
+    .bundle-card h3 {
+      font-size: 1.0625rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: var(--space-2);
+      letter-spacing: -0.01em;
+    }
+
+    .bundle-focus {
+      font-size: 0.8rem;
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: var(--space-4);
+    }
+
+    .bundle-contents {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: var(--space-5);
+      line-height: 1.55;
+    }
+
+    .bundle-pricing {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      flex-wrap: wrap;
+    }
+
+    .bundle-price-retail {
+      font-size: 0.8rem;
+      color: var(--text-faint);
+      text-decoration: line-through;
+    }
+
+    .bundle-price-tier1,
+    .bundle-price-tier2 {
+      font-size: 0.875rem;
+      font-weight: 600;
+    }
+
+    .bundle-price-tier1 {
+      color: var(--text-body);
+    }
+
+    .bundle-price-tier2 {
+      color: var(--gold);
+    }
+
+    /* =============================================
+       PRICING TABLE
+       ============================================= */
+    .pricing-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-3);
+      margin-bottom: var(--space-8);
+    }
+
+    .pricing-toggle-label {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      transition: color var(--t-fast);
+    }
+
+    .pricing-toggle-label.active {
+      color: var(--text-primary);
+    }
+
+    .toggle-switch {
+      width: 48px;
+      height: 26px;
+      background: var(--border-strong);
+      border-radius: var(--r-full);
+      position: relative;
+      cursor: pointer;
+      transition: background var(--t-fast);
+    }
+
+    .toggle-switch.active {
+      background: var(--gold);
+    }
+
+    .toggle-switch::after {
+      content: '';
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: white;
+      transition: transform var(--t-fast) var(--ease);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+    }
+
+    .toggle-switch.active::after {
+      transform: translateX(22px);
+    }
+
+    .pricing-table-wrap {
+      overflow-x: auto;
+      border-radius: var(--r-xl);
+      border: 1px solid var(--border);
+    }
+
+    .pricing-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 600px;
+    }
+
+    .pricing-table th {
+      background: var(--bg-elevated);
+      padding: var(--space-4) var(--space-5);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .pricing-table th:nth-child(n+2) {
+      text-align: right;
+    }
+
+    .pricing-table td {
+      padding: var(--space-4) var(--space-5);
+      font-size: 0.875rem;
+      color: var(--text-body);
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+
+    .pricing-table tr:last-child td { border-bottom: none; }
+
+    .pricing-table tr:hover td {
+      background: rgba(255,255,255,0.02);
+    }
+
+    .pricing-table td:nth-child(n+2) {
+      text-align: right;
+    }
+
+    .pricing-table .retail-price {
+      color: var(--text-faint);
+      text-decoration: line-through;
+    }
+
+    .pricing-table .tier-price {
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .pricing-table .tier-price.highlight {
+      color: var(--gold);
+    }
+
+    .pricing-table .discount-badge {
+      display: inline-block;
+      font-size: 0.6875rem;
+      font-weight: 700;
+      color: var(--gold);
+      background: var(--gold-subtle);
+      border: 1px solid var(--gold-border);
+      padding: 2px 8px;
+      border-radius: var(--r-full);
+    }
+
+    .pricing-table .product-name {
+      font-weight: 600;
+      color: var(--text-primary);
+      font-size: 0.9rem;
+    }
+
+    .pricing-table .category-row td {
+      background: var(--bg-elevated);
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold);
+      padding: var(--space-3) var(--space-5);
+    }
+
+    .pricing-table .moq-note {
+      font-size: 0.75rem;
+      color: var(--text-faint);
+    }
+
+    .pricing-note {
+      text-align: center;
+      font-size: 0.8125rem;
+      color: var(--text-faint);
+      margin-top: var(--space-4);
+    }
+
+    .pricing-note a {
+      color: var(--gold);
+    }
+
+    /* =============================================
+       CUSTOM TIER
+       ============================================= */
+    .custom-tier-banner {
+      background: linear-gradient(135deg, rgba(212,168,67,0.06) 0%, rgba(212,168,67,0.02) 100%);
+      border: 1px solid var(--gold-border);
+      border-radius: var(--r-2xl);
+      padding: var(--space-8) var(--space-10);
+      text-align: center;
+      margin-top: var(--space-8);
+    }
+
+    .custom-tier-banner h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+      margin-bottom: var(--space-2);
+    }
+
+    .custom-tier-banner p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: var(--space-4);
+    }
+
+    .custom-tier-banner a {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      color: var(--gold);
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: color var(--t-fast);
+    }
+
+    .custom-tier-banner a:hover { color: var(--gold-bright); }
+
+    .custom-tier-banner a svg {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2.5;
+    }
+
+    /* =============================================
+       WHY WHOLESALE
+       ============================================= */
+    .wholesale-narrative {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-12);
+      align-items: center;
+      margin-top: var(--space-12);
+    }
+
+    .wholesale-narrative-content h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+      margin-bottom: var(--space-4);
+    }
+
+    .wholesale-narrative-content p {
+      font-size: 0.9375rem;
+      color: var(--text-body);
+      line-height: 1.7;
+      margin-bottom: var(--space-4);
+    }
+
+    .wholesale-points {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+      margin-top: var(--space-6);
+    }
+
+    .wholesale-point {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-3);
+    }
+
+    .wholesale-point-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--gold-subtle);
+      border: 1px solid var(--gold-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .wholesale-point-icon svg {
+      width: 12px;
+      height: 12px;
+      stroke: var(--gold);
+      fill: none;
+      stroke-width: 2.5;
+    }
+
+    .wholesale-point p {
+      font-size: 0.9rem;
+      color: var(--text-body);
+      margin-bottom: 0;
+      line-height: 1.55;
+    }
+
+    .wholesale-visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .wholesale-visual-card {
+      background: var(--bg-card);
+      border: 1px solid var(--gold-border);
+      border-radius: var(--r-2xl);
+      padding: var(--space-8);
+      width: 100%;
+      max-width: 380px;
+    }
+
+    .wv-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--space-4) 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .wv-item:last-child { border-bottom: none; }
+
+    .wv-label {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+    }
+
+    .wv-value {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .wv-value.highlight { color: var(--gold); }
+
+    .wv-divider {
+      height: 1px;
+      background: var(--gold-border);
+      margin: var(--space-3) 0;
+    }
+
+    @media (max-width: 1024px) {
+      .supercharger-inner { grid-template-columns: 1fr; }
+      .supercharger-visual { display: none; }
+      .audience-grid { grid-template-columns: repeat(2, 1fr); }
+      .bundles-grid { grid-template-columns: 1fr; }
+      .wholesale-narrative { grid-template-columns: 1fr; }
+      .wholesale-visual { display: none; }
+    }
+
+    @media (max-width: 640px) {
+      .audience-grid { grid-template-columns: 1fr 1fr; }
+      .supercharger-stats { grid-template-columns: 1fr 1fr; }
+      .custom-tier-banner { padding: var(--space-6); }
+    }
   </style>
 </head>
 <body>
@@ -1486,9 +2139,110 @@
   </section>
 
   <!-- =============================================
+       THE SUPERCHARGER — Exclusive Value Prop
+       ============================================= -->
+  <section id="supercharger" class="supercharger">
+    <div class="container">
+      <div class="supercharger-inner">
+        <div class="supercharger-content">
+          <div class="supercharger-label">
+            <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            Proprietary Technology
+          </div>
+          <h2 class="supercharger-headline">
+            The <span>Supercharging</span> Process.<br>No One Else Can Do It.
+          </h2>
+          <p class="supercharger-description">
+            Similar products exist elsewhere — often at lower prices. But no other company can replicate what TLS does through our proprietary <strong>SUPERCHARGING process</strong>. It's the exclusive engineered value built into every medallion, bracelet, and device we sell. This is what makes TLS products fundamentally different from anything else on the market.
+          </p>
+          <p class="supercharger-description">
+            While others sell look-alikes, TLS sells transformation. Your customers aren't just buying a product — they're buying the result of a process that took decades to develop.
+          </p>
+          <div class="supercharger-stats">
+            <div class="supercharger-stat">
+              <div class="supercharger-stat-number">44×</div>
+              <div class="supercharger-stat-label">Greater Bioelectric Impact</div>
+            </div>
+            <div class="supercharger-stat">
+              <div class="supercharger-stat-number">+80%</div>
+              <div class="supercharger-stat-label">Vm Study Improvement</div>
+            </div>
+          </div>
+          <p class="supercharger-description" style="margin-bottom:0; font-size:0.85rem; color:var(--text-muted);">
+            Independent lab testing comparing Supercharged Medallion vs. standard medallion — Dr. Glen Rein, lead researcher.
+          </p>
+        </div>
+        <div class="supercharger-visual">
+          <div class="supercharger-orb">
+            <div class="supercharger-ring"></div>
+            <div class="supercharger-ring"></div>
+            <div class="supercharger-ring"></div>
+            <div class="supercharger-ring"></div>
+            <div class="supercharger-core">
+              <svg viewBox="0 0 80 80" fill="none">
+                <polygon points="40,8 70,40 40,72 10,40"/>
+                <polygon points="40,18 58,40 40,62 22,40"/>
+                <circle cx="40" cy="40" r="5" stroke-width="1.5"/>
+                <circle cx="40" cy="40" r="2" fill="#D4A843" stroke="none"/>
+                <line x1="40" y1="8" x2="40" y2="18" stroke-width="1" opacity="0.5"/>
+                <line x1="40" y1="62" x2="40" y2="72" stroke-width="1" opacity="0.5"/>
+                <line x1="10" y1="40" x2="22" y2="40" stroke-width="1" opacity="0.5"/>
+                <line x1="58" y1="40" x2="70" y2="40" stroke-width="1" opacity="0.5"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       WHO THIS IS FOR
+       ============================================= -->
+  <section id="audience" class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Ideal Partners</span>
+        <h2 class="section-title">Who the TLS Wholesale Program Is For</h2>
+        <p class="section-subtitle">TLS products aren't like other wellness products. They're designed to be sold as part of a broader experience, service, or belief system — which means less price sensitivity and more consistent repeat purchasing.</p>
+      </div>
+      <div class="audience-grid">
+        <div class="audience-card">
+          <div class="audience-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <h4>Spiritual & Metaphysical Stores</h4>
+          <p>Crystal shops, energy-based retail, and metaphysical boutiques where customers already invest in wellness tools.</p>
+        </div>
+        <div class="audience-card">
+          <div class="audience-icon">
+            <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <h4>Jewelry & Accessory Stores</h4>
+          <p>Retailers focused on symbolic, spiritual, or high-meaning products where story and exclusivity drive the sale.</p>
+        </div>
+        <div class="audience-card">
+          <div class="audience-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          </div>
+          <h4>Holistic Wellness Spaces</h4>
+          <p>Alternative health stores, wellness centers, and integrative health environments that serve committed wellness seekers.</p>
+        </div>
+        <div class="audience-card">
+          <div class="audience-icon">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h4>Practitioners & Service Providers</h4>
+          <p>Energy workers, coaches, healers, and practitioners who integrate wellness technology into client sessions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
        HOW IT WORKS
        ============================================= -->
-  <section id="how-it-works" class="section section-alt">
+  <section id="how-it-works" class="section">
     <div class="container">
       <div class="section-header">
         <span class="section-label">Process</span>
@@ -1645,6 +2399,68 @@
   </section>
 
   <!-- =============================================
+       BUNDLE PACKAGES
+       ============================================= -->
+  <section id="bundles" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Bundle Packages</span>
+        <h2 class="section-title">Curated Product Bundles</h2>
+        <p class="section-subtitle">Pre-selected bundles make it easy to offer compelling starter packages to your customers — and drive higher average order values for your business.</p>
+      </div>
+      <div class="bundles-grid">
+
+        <div class="bundle-card">
+          <div class="bundle-tag">Most Popular</div>
+          <h3>Advanced Detox System</h3>
+          <div class="bundle-focus">Focus: Full-body detoxification</div>
+          <div class="bundle-contents">Supercharged Medallion + PYRAMID Scalar Device + Grounding Rod Set + 90-Day Supplement Starter Pack</div>
+          <div class="bundle-pricing">
+            <span class="bundle-price-retail">Retail: $3,200</span>
+            <span class="bundle-price-tier1">Tier 1: $1,920</span>
+            <span class="bundle-price-tier2">Tier 2: $1,600</span>
+          </div>
+        </div>
+
+        <div class="bundle-card">
+          <div class="bundle-tag">Best Value</div>
+          <h3>Energy & Performance Stack</h3>
+          <div class="bundle-focus">Focus: Energy, focus & daily performance</div>
+          <div class="bundle-contents">Supercharged Medallion + CUBE Device + Wellness Bracelet + Supercharged Cream + 60-Day Performance Supplements</div>
+          <div class="bundle-pricing">
+            <span class="bundle-price-retail">Retail: $2,800</span>
+            <span class="bundle-price-tier1">Tier 1: $1,680</span>
+            <span class="bundle-price-tier2">Tier 2: $1,400</span>
+          </div>
+        </div>
+
+        <div class="bundle-card">
+          <h3>Daily Wellness Stack</h3>
+          <div class="bundle-focus">Focus: Everyday health maintenance</div>
+          <div class="bundle-contents">Standard Medallion + CUBE mini + Wellness Bracelet + Daily Wellness Supplements + TLS Water Bottle</div>
+          <div class="bundle-pricing">
+            <span class="bundle-price-retail">Retail: $1,400</span>
+            <span class="bundle-price-tier1">Tier 1: $840</span>
+            <span class="bundle-price-tier2">Tier 2: $700</span>
+          </div>
+        </div>
+
+        <div class="bundle-card">
+          <h3>Cellular Health Stack</h3>
+          <div class="bundle-focus">Focus: Deep cellular rejuvenation</div>
+          <div class="bundle-contents">Supercharged Medallion + SPHERE Device + Grounding Rods + Cellular Health Supplements + TLS Water Treatment</div>
+          <div class="bundle-pricing">
+            <span class="bundle-price-retail">Retail: $3,600</span>
+            <span class="bundle-price-tier1">Tier 1: $2,160</span>
+            <span class="bundle-price-tier2">Tier 2: $1,800</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
        WHOLESALE TIERS
        ============================================= -->
   <section id="tiers" class="section section-alt">
@@ -1763,6 +2579,234 @@
       <div class="why-cta">
         <p class="why-cta-headline">Your clients deserve the best. Your margins deserve TLS.</p>
         <p class="why-cta-sub">Join hundreds of practitioners who have upgraded their practice with TLS technology.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       WHY WHOLESALE / SUPPLEMENT POSITIONING
+       ============================================= -->
+  <section id="wholesale-vision" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">The Wholesale Vision</span>
+        <h2 class="section-title">Why Build a Partnership with TLS?</h2>
+      </div>
+      <div class="wholesale-narrative">
+        <div class="wholesale-narrative-content">
+          <h3>We're not just selling products — we're building a movement.</h3>
+          <p>The TLS wholesale program was designed to create genuine partnerships with businesses that share our mission: helping more people experience the benefits of scalar wave technology. We choose our partners carefully because we believe the right fit benefits everyone — your business, your clients, and the broader TLS community.</p>
+          <p>Unlike typical wholesale programs that treat you as just another account number, TLS views wholesale partners as an extension of our team. When you succeed, we succeed. That's why we've built flexible minimums, tiered pricing, and responsive support into the foundation of this program.</p>
+          <div class="wholesale-points">
+            <div class="wholesale-point">
+              <div class="wholesale-point-icon">
+                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <p><strong>Supplement category</strong> — We offer a 10–25% discount on supplements, separate from our main 40–55% device discount. This keeps supplement margins competitive while maintaining the integrity of our core pricing structure.</p>
+            </div>
+            <div class="wholesale-point">
+              <div class="wholesale-point-icon">
+                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <p><strong>High-ticket category minimums</strong> — For CUBE, SPHERE, PYRAMID, and CHAIR, we require category-level minimums (not per-unit minimums). This protects partner margins and keeps distribution healthy as the program scales.</p>
+            </div>
+            <div class="wholesale-point">
+              <div class="wholesale-point-icon">
+                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <p><strong>Custom large-order pricing</strong> — For partners with orders exceeding standard tier maximums, we offer custom pricing on a case-by-case basis. Contact your account specialist to discuss volume-based arrangements.</p>
+            </div>
+          </div>
+        </div>
+        <div class="wholesale-visual">
+          <div class="wholesale-visual-card">
+            <div class="wv-item">
+              <span class="wv-label">Launch Date</span>
+              <span class="wv-value highlight">July 1st</span>
+            </div>
+            <div class="wv-divider"></div>
+            <div class="wv-item">
+              <span class="wv-label">Early Access</span>
+              <span class="wv-value highlight">Free (reg. $99/yr)</span>
+            </div>
+            <div class="wv-divider"></div>
+            <div class="wv-item">
+              <span class="wv-label">Entry Tier</span>
+              <span class="wv-value">$1,000/mo min</span>
+            </div>
+            <div class="wv-item">
+              <span class="wv-label">Preferred Tier</span>
+              <span class="wv-value">$1,700/mo min</span>
+            </div>
+            <div class="wv-divider"></div>
+            <div class="wv-item">
+              <span class="wv-label">Device Discount</span>
+              <span class="wv-value highlight">Up to 55% off</span>
+            </div>
+            <div class="wv-item">
+              <span class="wv-label">Supplement Discount</span>
+              <span class="wv-value">10–25% off</span>
+            </div>
+            <div class="wv-divider"></div>
+            <div class="wv-item">
+              <span class="wv-label">Custom Orders</span>
+              <span class="wv-value">Case-by-case</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       DETAILED PRICING TABLE
+       ============================================= -->
+  <section id="pricing" class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Detailed Pricing</span>
+        <h2 class="section-title">Wholesale Price by Product</h2>
+        <p class="section-subtitle">Toggle between Entry and Preferred tier pricing to see your margins at each level.</p>
+      </div>
+      <div class="pricing-toggle">
+        <span class="pricing-toggle-label active" id="label-entry">Entry Tier (up to 25% off)</span>
+        <div class="toggle-switch active" id="tier-toggle" role="switch" aria-checked="true" tabindex="0"></div>
+        <span class="pricing-toggle-label" id="label-preferred">Preferred Tier (up to 35% off)</span>
+      </div>
+      <div class="pricing-table-wrap">
+        <table class="pricing-table" id="pricing-table">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Retail</th>
+              <th id="th-tier1">Entry: You Pay</th>
+              <th id="th-tier2">Your Margin</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Supercharged Devices -->
+            <tr class="category-row">
+              <td colspan="4">⚡ Supercharged Devices — Highest Margin</td>
+            </tr>
+            <tr data-tier1="75" data-tier2="34">
+              <td class="product-name">Supercharged Medallion <span class="moq-note">(min 3/unit)</span></td>
+              <td class="retail-price">$150</td>
+              <td class="tier-price">$45</td>
+              <td class="tier-price highlight">−25% off</td>
+            </tr>
+            <tr data-tier1="140" data-tier2="120">
+              <td class="product-name">Supercharged Bracelet</td>
+              <td class="retail-price">$200</td>
+              <td class="tier-price">$140</td>
+              <td class="tier-price">−30% off</td>
+            </tr>
+            <!-- Standard Devices -->
+            <tr class="category-row">
+              <td colspan="4">◆ Standard Devices</td>
+            </tr>
+            <tr data-tier1="120" data-tier2="90">
+              <td class="product-name">Standard Medallion <span class="moq-note">(min 5/unit)</span></td>
+              <td class="retail-price">$200</td>
+              <td class="tier-price">$120</td>
+              <td class="tier-price">−40% off</td>
+            </tr>
+            <tr data-tier1="75" data-tier2="60">
+              <td class="product-name">Wellness Bracelet</td>
+              <td class="retail-price">$100</td>
+              <td class="tier-price">$75</td>
+              <td class="tier-price">−25% off</td>
+            </tr>
+            <!-- High-Ticket Devices -->
+            <tr class="category-row">
+              <td colspan="4">◆ High-Ticket Devices — Category MOQ Applies</td>
+            </tr>
+            <tr data-tier1="1,100" data-tier2="900">
+              <td class="product-name">CUBE mini <span class="moq-note">(min $500/category)</span></td>
+              <td class="retail-price">$2,000</td>
+              <td class="tier-price">$1,100</td>
+              <td class="tier-price">−45% off</td>
+            </tr>
+            <tr data-tier1="2,500" data-tier2="2,000">
+              <td class="product-name">CUBE <span class="moq-note">(min $1,000/category)</span></td>
+              <td class="retail-price">$4,500</td>
+              <td class="tier-price">$2,500</td>
+              <td class="tier-price">−44% off</td>
+            </tr>
+            <tr data-tier1="3,500" data-tier2="2,900">
+              <td class="product-name">SPHERE <span class="moq-note">(min $1,500/category)</span></td>
+              <td class="retail-price">$6,000</td>
+              <td class="tier-price">$3,500</td>
+              <td class="tier-price">−42% off</td>
+            </tr>
+            <tr data-tier1="4,500" data-tier2="3,600">
+              <td class="product-name">PYRAMID <span class="moq-note">(min $2,000/category)</span></td>
+              <td class="retail-price">$8,000</td>
+              <td class="tier-price">$4,500</td>
+              <td class="tier-price">−44% off</td>
+            </tr>
+            <tr data-tier1="8,500" data-tier2="7,000">
+              <td class="product-name">CHAIR <span class="moq-note">(min $3,000/category)</span></td>
+              <td class="retail-price">$15,000</td>
+              <td class="tier-price">$8,500</td>
+              <td class="tier-price">−43% off</td>
+            </tr>
+            <!-- Accessories -->
+            <tr class="category-row">
+              <td colspan="4">◇ Accessories</td>
+            </tr>
+            <tr data-tier1="65" data-tier2="50">
+              <td class="product-name">Grounding Rod Set</td>
+              <td class="retail-price">$100</td>
+              <td class="tier-price">$65</td>
+              <td class="tier-price">−35% off</td>
+            </tr>
+            <tr data-tier1="50" data-tier2="40">
+              <td class="product-name">TLS Water Bottle</td>
+              <td class="retail-price">$75</td>
+              <td class="tier-price">$50</td>
+              <td class="tier-price">−33% off</td>
+            </tr>
+            <!-- Supplements -->
+            <tr class="category-row">
+              <td colspan="4">◇ Supplements — 10–25% Discount (variety, not margin)</td>
+            </tr>
+            <tr data-tier1="30" data-tier2="25">
+              <td class="product-name">Supercharged Cream</td>
+              <td class="retail-price">$40</td>
+              <td class="tier-price">$30</td>
+              <td class="tier-price">−25% off</td>
+            </tr>
+            <tr data-tier1="60" data-tier2="45">
+              <td class="product-name">Performance Supplements (60-day)</td>
+              <td class="retail-price">$80</td>
+              <td class="tier-price">$60</td>
+              <td class="tier-price">−25% off</td>
+            </tr>
+            <tr data-tier1="90" data-tier2="70">
+              <td class="product-name">Cellular Health Supplements (90-day)</td>
+              <td class="retail-price">$120</td>
+              <td class="tier-price">$90</td>
+              <td class="tier-price">−25% off</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="pricing-note">Pricing shown reflects standard unit costs. All prices in USD. Contact your account specialist for custom large-order pricing on orders exceeding standard tier maximums.</p>
+    </div>
+  </section>
+
+  <!-- =============================================
+       CUSTOM TIER BANNER
+       ============================================= -->
+  <section id="custom-tier" class="section">
+    <div class="container">
+      <div class="custom-tier-banner">
+        <h3>Placing Large Orders? Let's Talk.</h3>
+        <p>For orders exceeding standard tier maximums — or for partners seeking custom pricing arrangements — our wholesale team handles custom quotes on a case-by-case basis. Your dedicated account specialist will work with you to build a pricing structure that makes sense for your volume.</p>
+        <a href="#apply">
+          Contact Us for Custom Pricing
+          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
       </div>
     </div>
   </section>
@@ -2006,12 +3050,45 @@
       });
     }, { threshold: 0.1 });
 
-    document.querySelectorAll('.product-card, .tier-card, .why-card, .step').forEach(el => {
+    document.querySelectorAll('.product-card, .tier-card, .why-card, .step, .audience-card, .bundle-card').forEach(el => {
       el.style.opacity = '0';
       el.style.transform = 'translateY(20px)';
       el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
       observer.observe(el);
     });
+
+    // Pricing tier toggle
+    const tierToggle = document.getElementById('tier-toggle');
+    const labelEntry = document.getElementById('label-entry');
+    const labelPreferred = document.getElementById('label-preferred');
+    const thTier1 = document.getElementById('th-tier1');
+    const thTier2 = document.getElementById('th-tier2');
+
+    if (tierToggle) {
+      tierToggle.addEventListener('click', function () {
+        const isActive = this.classList.toggle('active');
+        this.setAttribute('aria-checked', isActive);
+
+        if (isActive) {
+          labelEntry.classList.add('active');
+          labelPreferred.classList.remove('active');
+          thTier1.textContent = 'Entry: You Pay';
+          thTier2.textContent = 'Your Margin';
+        } else {
+          labelEntry.classList.remove('active');
+          labelPreferred.classList.add('active');
+          thTier1.textContent = 'Preferred: You Pay';
+          thTier2.textContent = 'Your Margin';
+        }
+
+        document.querySelectorAll('#pricing-table tbody tr[data-tier1]').forEach(row => {
+          const t1 = row.getAttribute('data-tier1');
+          const t2 = row.getAttribute('data-tier2');
+          const cells = row.querySelectorAll('.tier-price');
+          if (cells[0]) cells[0].textContent = '$' + (isActive ? t1 : t2);
+        });
+      });
+    }
   </script>
 
 </body>
