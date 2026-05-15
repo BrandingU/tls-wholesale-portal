@@ -7,22 +7,72 @@
   <meta name="description" content="Exclusive wholesale access for TLS partners. Premium wellness technology — medallions, bracelets, and devices.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,300&display=swap" rel="stylesheet">
   <style>
+    /* =============================================
+       DESIGN TOKENS — TLS WHOLESALE PORTAL
+       ============================================= */
     :root {
-      --bg: #0a0a0a;
-      --card: #141414;
-      --border: #222;
-      --text: #e0e0e0;
-      --muted: #666;
-      --accent: #D4A843;
-      --accent-hover: #e6bc5a;
-      --accent-dim: rgba(212, 168, 67, 0.1);
-      --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      --radius: 8px;
-      --transition: 0.3s ease;
+      /* Brand colors */
+      --bg:           #080808;
+      --bg-elevated:  #111111;
+      --bg-card:      #0f0f0f;
+      --bg-card-hover:#141414;
+
+      /* Borders */
+      --border:       rgba(255,255,255,0.07);
+      --border-strong:rgba(255,255,255,0.14);
+
+      /* Text */
+      --text-primary: #ffffff;
+      --text-body:    rgba(255,255,255,0.72);
+      --text-muted:   rgba(255,255,255,0.42);
+      --text-faint:   rgba(255,255,255,0.25);
+
+      /* Gold accent — TLS signature */
+      --gold:         #D4A843;
+      --gold-bright:  #F0C060;
+      --gold-dim:     #A07830;
+      --gold-subtle:  rgba(212,168,67,0.08);
+      --gold-glow:    rgba(212,168,67,0.18);
+      --gold-border:  rgba(212,168,67,0.30);
+
+      /* Typography */
+      --font:         'Inter', system-ui, -apple-system, sans-serif;
+
+      /* Spacing */
+      --space-1:  4px;
+      --space-2:  8px;
+      --space-3:  12px;
+      --space-4:  16px;
+      --space-5:  20px;
+      --space-6:  24px;
+      --space-8:  32px;
+      --space-10: 40px;
+      --space-12: 48px;
+      --space-16: 64px;
+      --space-20: 80px;
+      --space-24: 96px;
+
+      /* Radius */
+      --r-sm:   4px;
+      --r-md:   8px;
+      --r-lg:   12px;
+      --r-xl:   16px;
+      --r-2xl:  24px;
+      --r-full: 9999px;
+
+      /* Transitions */
+      --ease:   cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --ease-out: cubic-bezier(0.0, 0.0, 0.2, 1.0);
+      --t-fast: 150ms;
+      --t-base: 250ms;
+      --t-slow: 400ms;
     }
 
+    /* =============================================
+       RESET & BASE
+       ============================================= */
     *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
@@ -32,754 +82,1084 @@
     html {
       scroll-behavior: smooth;
       font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
     }
 
     body {
       font-family: var(--font);
       background: var(--bg);
-      color: var(--text);
+      color: var(--text-body);
       line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    ::selection {
+      background: rgba(212,168,67,0.25);
+      color: var(--gold-bright);
     }
 
     a {
-      color: var(--accent);
+      color: var(--gold);
       text-decoration: none;
-      transition: color var(--transition);
+      transition: color var(--t-fast) var(--ease);
     }
+    a:hover { color: var(--gold-bright); }
 
-    a:hover {
-      color: var(--accent-hover);
-    }
+    img, svg { display: block; }
 
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
+    /* =============================================
+       LAYOUT
+       ============================================= */
     .container {
-      max-width: 1200px;
+      max-width: 1120px;
       margin: 0 auto;
-      padding: 0 24px;
+      padding: 0 var(--space-6);
     }
 
-    /* Navigation */
+    .section {
+      padding: var(--space-24) 0;
+    }
+
+    .section-alt {
+      background: var(--bg-elevated);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* =============================================
+       NAVIGATION
+       ============================================= */
     .nav {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-      background: rgba(10, 10, 10, 0.95);
-      backdrop-filter: blur(12px);
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(8,8,8,0.85);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
       border-bottom: 1px solid var(--border);
-      padding: 16px 0;
     }
 
     .nav-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      height: 64px;
     }
 
     .nav-logo {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: var(--space-3);
+      font-size: 1.125rem;
       font-weight: 700;
-      font-size: 1.25rem;
-      color: var(--text);
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
     }
 
-    .nav-logo svg {
-      width: 36px;
-      height: 36px;
-      fill: var(--accent);
+    .nav-logo-mark {
+      width: 34px;
+      height: 34px;
+      background: var(--gold);
+      border-radius: var(--r-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-logo-mark svg {
+      width: 18px;
+      height: 18px;
+      fill: #080808;
     }
 
     .nav-logo span {
-      color: var(--accent);
+      color: var(--gold);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: var(--space-6);
+    }
+
+    .nav-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: 0.02em;
+    }
+
+    .nav-badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      animation: pulse-gold 2s ease infinite;
+    }
+
+    @keyframes pulse-gold {
+      0%, 100% { opacity: 1; box-shadow: 0 0 0 0 var(--gold-glow); }
+      50% { opacity: 0.7; box-shadow: 0 0 0 6px transparent; }
     }
 
     .nav-cta {
-      background: var(--accent);
-      color: var(--bg);
-      padding: 10px 20px;
-      border-radius: var(--radius);
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      background: var(--gold);
+      color: #080808;
+      font-size: 0.8125rem;
       font-weight: 600;
-      font-size: 0.875rem;
-      transition: all var(--transition);
+      padding: 9px 18px;
+      border-radius: var(--r-md);
+      transition: all var(--t-base) var(--ease);
+      letter-spacing: 0.01em;
     }
 
     .nav-cta:hover {
-      background: var(--accent-hover);
-      color: var(--bg);
+      background: var(--gold-bright);
+      color: #080808;
       transform: translateY(-1px);
+      box-shadow: 0 4px 20px var(--gold-glow);
     }
 
-    /* Hero */
+    .nav-cta svg {
+      width: 14px;
+      height: 14px;
+      stroke: #080808;
+      fill: none;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: transform var(--t-fast) var(--ease);
+    }
+
+    .nav-cta:hover svg {
+      transform: translateX(2px);
+    }
+
+    /* =============================================
+       HERO
+       ============================================= */
     .hero {
       min-height: 100vh;
       display: flex;
       align-items: center;
-      padding: 120px 0 80px;
+      padding: 120px 0 var(--space-24);
       position: relative;
       overflow: hidden;
     }
 
+    /* Ambient radial glow behind hero */
     .hero::before {
       content: '';
       position: absolute;
-      top: 0;
+      top: -10%;
       left: 50%;
       transform: translateX(-50%);
-      width: 800px;
-      height: 800px;
-      background: radial-gradient(circle, rgba(212, 168, 67, 0.08) 0%, transparent 70%);
+      width: 900px;
+      height: 700px;
+      background:
+        radial-gradient(ellipse at 50% 40%,
+          rgba(212,168,67,0.07) 0%,
+          rgba(212,168,67,0.03) 35%,
+          transparent 65%
+        );
       pointer-events: none;
     }
 
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
+    /* Geometric grid dots */
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(255,255,255,0.035) 1px, transparent 1px);
+      background-size: 40px 40px;
+      mask-image: radial-gradient(ellipse at 50% 30%, black 0%, transparent 70%);
+      pointer-events: none;
     }
 
-    .hero-content {
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-16);
+      align-items: center;
       position: relative;
       z-index: 1;
     }
 
-    .hero-badge {
+    .hero-content { max-width: 560px; }
+
+    .hero-eyebrow {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      background: var(--accent-dim);
-      border: 1px solid rgba(212, 168, 67, 0.3);
-      padding: 8px 16px;
-      border-radius: 50px;
-      font-size: 0.875rem;
-      color: var(--accent);
-      margin-bottom: 24px;
+      gap: var(--space-2);
+      background: var(--gold-subtle);
+      border: 1px solid var(--gold-border);
+      color: var(--gold);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: var(--r-full);
+      margin-bottom: var(--space-8);
     }
 
-    .hero-badge::before {
-      content: '';
-      width: 8px;
-      height: 8px;
-      background: var(--accent);
+    .hero-eyebrow-dot {
+      width: 5px;
+      height: 5px;
       border-radius: 50%;
-      animation: pulse 2s infinite;
+      background: var(--gold);
     }
 
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.4; }
-    }
-
-    .hero h1 {
-      font-size: clamp(2.5rem, 5vw, 4rem);
+    .hero-headline {
+      font-size: clamp(2.75rem, 5vw, 4.25rem);
       font-weight: 700;
-      line-height: 1.1;
-      margin-bottom: 16px;
-      letter-spacing: -0.02em;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--text-primary);
+      margin-bottom: var(--space-6);
     }
 
-    .hero h1 .accent {
-      color: var(--accent);
+    .hero-headline-line {
+      display: block;
     }
 
-    .hero-subtitle {
-      font-size: 1.25rem;
-      color: var(--muted);
-      margin-bottom: 32px;
+    .hero-headline-line:last-child {
+      color: var(--gold);
+    }
+
+    .hero-description {
+      font-size: 1.125rem;
+      line-height: 1.65;
+      color: var(--text-body);
+      margin-bottom: var(--space-10);
       max-width: 480px;
     }
 
-    .hero-cta-group {
+    .hero-actions {
       display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      margin-bottom: var(--space-10);
       flex-wrap: wrap;
-      gap: 16px;
-      margin-bottom: 40px;
     }
 
     .btn-primary {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      background: var(--accent);
-      color: var(--bg);
-      padding: 16px 32px;
-      border-radius: var(--radius);
+      gap: var(--space-2);
+      background: var(--gold);
+      color: #080808;
+      font-size: 0.9375rem;
       font-weight: 600;
-      font-size: 1rem;
+      padding: 14px 28px;
+      border-radius: var(--r-md);
       border: none;
       cursor: pointer;
-      transition: all var(--transition);
+      transition: all var(--t-base) var(--ease);
+      letter-spacing: 0.01em;
     }
 
     .btn-primary:hover {
-      background: var(--accent-hover);
-      color: var(--bg);
+      background: var(--gold-bright);
+      color: #080808;
       transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(212, 168, 67, 0.3);
+      box-shadow: 0 8px 30px var(--gold-glow);
     }
 
-    .btn-secondary {
+    .btn-primary svg {
+      width: 16px;
+      height: 16px;
+      stroke: #080808;
+      fill: none;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: transform var(--t-fast) var(--ease);
+    }
+
+    .btn-primary:hover svg {
+      transform: translateX(3px);
+    }
+
+    .btn-ghost {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: var(--space-2);
       background: transparent;
-      color: var(--text);
-      padding: 16px 32px;
-      border-radius: var(--radius);
-      font-weight: 600;
-      font-size: 1rem;
-      border: 1px solid var(--border);
+      color: var(--text-body);
+      font-size: 0.9375rem;
+      font-weight: 500;
+      padding: 14px 24px;
+      border-radius: var(--r-md);
+      border: 1px solid var(--border-strong);
       cursor: pointer;
-      transition: all var(--transition);
+      transition: all var(--t-base) var(--ease);
     }
 
-    .btn-secondary:hover {
-      border-color: var(--accent);
-      color: var(--accent);
+    .btn-ghost:hover {
+      border-color: rgba(255,255,255,0.28);
+      color: var(--text-primary);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .btn-ghost svg {
+      width: 16px;
+      height: 16px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
 
     .hero-trust {
       display: flex;
       align-items: center;
-      gap: 24px;
-      font-size: 0.875rem;
-      color: var(--muted);
+      gap: var(--space-6);
+      flex-wrap: wrap;
     }
 
     .hero-trust-item {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: var(--space-2);
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      letter-spacing: 0.01em;
     }
 
     .hero-trust-item svg {
-      width: 16px;
-      height: 16px;
-      fill: var(--accent);
+      width: 15px;
+      height: 15px;
+      stroke: var(--gold);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex-shrink: 0;
     }
 
-    .hero-image {
-      position: relative;
+    /* Hero visual — geometric medallion */
+    .hero-visual {
       display: flex;
-      justify-content: center;
       align-items: center;
-    }
-
-    .hero-image-wrapper {
+      justify-content: center;
       position: relative;
-      border-radius: 16px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      background: var(--card);
-      padding: 32px;
-      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
     }
 
-    .hero-image-wrapper img {
-      width: 100%;
-      max-width: 500px;
-      height: auto;
-      object-fit: contain;
+    .hero-visual-orb {
+      position: relative;
+      width: 420px;
+      height: 420px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .hero-urgency {
+    .hero-rings {
       position: absolute;
-      bottom: -20px;
+      inset: 0;
+      animation: rotate-slow 40s linear infinite;
+    }
+
+    @keyframes rotate-slow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .hero-rings svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .hero-core {
+      position: relative;
+      width: 240px;
+      height: 240px;
+    }
+
+    .hero-core-inner {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%,
+        rgba(212,168,67,0.15) 0%,
+        rgba(212,168,67,0.05) 40%,
+        rgba(212,168,67,0.02) 70%,
+        transparent 100%
+      );
+      border: 1px solid rgba(212,168,67,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow:
+        0 0 60px rgba(212,168,67,0.12),
+        inset 0 0 60px rgba(212,168,67,0.06);
+    }
+
+    .hero-core-inner svg {
+      width: 80px;
+      height: 80px;
+      stroke: var(--gold);
+      fill: none;
+      stroke-width: 1;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      opacity: 0.9;
+    }
+
+    .hero-urgency-banner {
+      position: absolute;
+      bottom: -16px;
       left: 50%;
       transform: translateX(-50%);
-      background: var(--accent);
-      color: var(--bg);
-      padding: 12px 24px;
-      border-radius: 50px;
-      font-weight: 600;
-      font-size: 0.875rem;
+      background: var(--gold);
+      color: #080808;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 8px 20px;
+      border-radius: var(--r-full);
       white-space: nowrap;
-      box-shadow: 0 8px 30px rgba(212, 168, 67, 0.4);
+      box-shadow: 0 4px 20px var(--gold-glow);
     }
 
-    /* Section styles */
-    .section {
-      padding: 100px 0;
+    .hero-urgency-banner span {
+      opacity: 0.7;
+      font-weight: 500;
     }
 
+    /* =============================================
+       SECTION HEADERS
+       ============================================= */
     .section-header {
       text-align: center;
-      margin-bottom: 64px;
+      margin-bottom: var(--space-16);
     }
 
     .section-label {
       display: inline-block;
-      font-size: 0.75rem;
+      font-size: 0.6875rem;
       font-weight: 600;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--accent);
-      margin-bottom: 16px;
+      color: var(--gold);
+      margin-bottom: var(--space-4);
     }
 
     .section-title {
-      font-size: clamp(2rem, 4vw, 3rem);
+      font-size: clamp(1.875rem, 3.5vw, 2.75rem);
       font-weight: 700;
-      margin-bottom: 16px;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.025em;
+      color: var(--text-primary);
+      margin-bottom: var(--space-4);
+      line-height: 1.15;
     }
 
     .section-subtitle {
-      font-size: 1.125rem;
-      color: var(--muted);
-      max-width: 600px;
+      font-size: 1.0625rem;
+      color: var(--text-body);
+      max-width: 560px;
       margin: 0 auto;
+      line-height: 1.65;
     }
 
-    /* How it Works */
-    .how-it-works {
-      background: var(--card);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-
+    /* =============================================
+       HOW IT WORKS
+       ============================================= */
     .steps-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 48px;
+      gap: var(--space-8);
+      position: relative;
+    }
+
+    .steps-grid::before {
+      content: '';
+      position: absolute;
+      top: 36px;
+      left: calc(16.67% + 24px);
+      right: calc(16.67% + 24px);
+      height: 1px;
+      background: linear-gradient(90deg,
+        transparent 0%,
+        var(--gold-border) 20%,
+        var(--gold-border) 80%,
+        transparent 100%
+      );
     }
 
     .step {
       text-align: center;
-      position: relative;
+      padding: var(--space-8) var(--space-6);
     }
 
     .step-number {
-      width: 64px;
-      height: 64px;
-      background: var(--accent-dim);
-      border: 2px solid var(--accent);
+      width: 72px;
+      height: 72px;
       border-radius: 50%;
+      background: var(--bg-elevated);
+      border: 1px solid var(--gold-border);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.5rem;
+      font-size: 1.375rem;
       font-weight: 700;
-      color: var(--accent);
-      margin: 0 auto 24px;
+      color: var(--gold);
+      margin: 0 auto var(--space-6);
+      position: relative;
+      box-shadow:
+        0 0 0 8px var(--bg-elevated),
+        0 0 30px var(--gold-glow);
+      transition: all var(--t-base) var(--ease);
+    }
+
+    .step:hover .step-number {
+      border-color: var(--gold);
+      box-shadow:
+        0 0 0 8px var(--bg-elevated),
+        0 0 50px rgba(212,168,67,0.3);
+      transform: scale(1.05);
+    }
+
+    .step-number::after {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: 50%;
+      background: conic-gradient(
+        from 0deg,
+        var(--gold) 0deg,
+        transparent 60deg,
+        transparent 300deg,
+        var(--gold) 360deg
+      );
+      opacity: 0.25;
+      z-index: -1;
     }
 
     .step h3 {
-      font-size: 1.25rem;
+      font-size: 1.0625rem;
       font-weight: 600;
-      margin-bottom: 12px;
+      color: var(--text-primary);
+      margin-bottom: var(--space-3);
+      letter-spacing: -0.01em;
     }
 
     .step p {
-      color: var(--muted);
-      font-size: 0.9375rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      max-width: 260px;
+      margin: 0 auto;
     }
 
-    .step-arrow {
-      position: absolute;
-      top: 32px;
-      right: -24px;
-      width: 48px;
-      height: 24px;
-      fill: var(--accent);
-      opacity: 0.5;
-    }
-
-    .step:last-child .step-arrow {
-      display: none;
-    }
-
-    /* Products */
+    /* =============================================
+       PRODUCTS
+       ============================================= */
     .products-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: var(--space-5);
     }
 
     .product-card {
-      background: var(--card);
+      background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 24px;
-      transition: all var(--transition);
+      border-radius: var(--r-xl);
+      padding: var(--space-7);
       position: relative;
       overflow: hidden;
+      transition: all var(--t-slow) var(--ease);
+      isolation: isolate;
     }
+
+    .product-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        circle at 80% 20%,
+        rgba(212,168,67,0.06) 0%,
+        transparent 50%
+      );
+      opacity: 0;
+      transition: opacity var(--t-slow) var(--ease);
+      z-index: 0;
+    }
+
+    .product-card > * { position: relative; z-index: 1; }
 
     .product-card:hover {
-      border-color: var(--accent);
+      border-color: var(--gold-border);
+      background: var(--bg-card-hover);
       transform: translateY(-4px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      box-shadow:
+        0 20px 60px rgba(0,0,0,0.5),
+        0 0 40px var(--gold-glow);
     }
 
+    .product-card:hover::before { opacity: 1; }
+
     .product-card.featured {
-      border-color: var(--accent);
-      background: linear-gradient(135deg, var(--card) 0%, rgba(212, 168, 67, 0.05) 100%);
+      border-color: var(--gold-border);
+      background: linear-gradient(
+        135deg,
+        rgba(212,168,67,0.04) 0%,
+        var(--bg-card) 60%
+      );
     }
+
+    .product-card.featured::before { opacity: 0.6; }
 
     .product-badge {
       position: absolute;
-      top: 16px;
-      right: 16px;
-      background: var(--accent);
-      color: var(--bg);
-      padding: 6px 12px;
-      border-radius: 50px;
-      font-size: 0.75rem;
-      font-weight: 600;
+      top: var(--space-4);
+      right: var(--space-4);
+      background: var(--gold);
+      color: #080808;
+      font-size: 0.5625rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: var(--r-full);
     }
 
+    /* Product icon with hover glow transition */
     .product-icon {
-      width: 80px;
-      height: 80px;
-      background: var(--accent-dim);
-      border-radius: 12px;
+      width: 60px;
+      height: 60px;
+      border-radius: var(--r-lg);
+      background: var(--gold-subtle);
+      border: 1px solid var(--gold-border);
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 20px;
-      font-size: 2rem;
+      margin-bottom: var(--space-6);
+      transition: all var(--t-base) var(--ease);
+    }
+
+    .product-icon svg {
+      width: 28px;
+      height: 28px;
+      stroke: var(--gold);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: all var(--t-base) var(--ease);
+    }
+
+    .product-card:hover .product-icon {
+      background: rgba(212,168,67,0.15);
+      border-color: rgba(212,168,67,0.5);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px var(--gold-glow);
+    }
+
+    .product-card:hover .product-icon svg {
+      stroke: var(--gold-bright);
+      filter: drop-shadow(0 0 8px rgba(212,168,67,0.5));
     }
 
     .product-card h3 {
-      font-size: 1.125rem;
+      font-size: 1rem;
       font-weight: 600;
-      margin-bottom: 8px;
+      color: var(--text-primary);
+      margin-bottom: var(--space-2);
+      letter-spacing: -0.01em;
     }
 
     .product-card p {
-      color: var(--muted);
-      font-size: 0.875rem;
-      margin-bottom: 16px;
+      font-size: 0.84375rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin-bottom: var(--space-5);
     }
 
     .product-highlight {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: var(--accent-dim);
-      border: 1px solid rgba(212, 168, 67, 0.3);
-      padding: 8px 12px;
-      border-radius: 6px;
-      font-size: 0.8125rem;
-      color: var(--accent);
-      font-weight: 500;
+      background: var(--gold-subtle);
+      border: 1px solid var(--gold-border);
+      padding: 5px 11px;
+      border-radius: var(--r-full);
+      font-size: 0.6875rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
     }
 
     .product-highlight svg {
-      width: 14px;
-      height: 14px;
-      fill: var(--accent);
+      width: 11px;
+      height: 11px;
+      stroke: var(--gold);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex-shrink: 0;
     }
 
-    /* Wholesale Tiers */
-    .tiers {
-      background: var(--card);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-
+    /* =============================================
+       WHOLESALE TIERS
+       ============================================= */
     .tiers-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 32px;
-      max-width: 900px;
+      gap: var(--space-6);
+      max-width: 880px;
       margin: 0 auto;
     }
 
     .tier-card {
-      background: var(--bg);
+      background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 40px;
-      text-align: center;
+      border-radius: var(--r-2xl);
+      padding: var(--space-10) var(--space-8);
       position: relative;
-      transition: all var(--transition);
+      transition: all var(--t-slow) var(--ease);
+      display: flex;
+      flex-direction: column;
     }
 
     .tier-card:hover {
+      border-color: var(--border-strong);
       transform: translateY(-4px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.4);
     }
 
     .tier-card.featured {
-      border-color: var(--accent);
+      border-color: var(--gold-border);
+      background: linear-gradient(
+        160deg,
+        rgba(212,168,67,0.05) 0%,
+        var(--bg-card) 50%
+      );
     }
 
-    .tier-card.featured::before {
-      content: 'Most Popular';
+    .tier-card.featured:hover {
+      border-color: var(--gold);
+      box-shadow:
+        0 24px 60px rgba(0,0,0,0.4),
+        0 0 50px var(--gold-glow);
+    }
+
+    .tier-ribbon {
       position: absolute;
-      top: -12px;
+      top: -1px;
       left: 50%;
       transform: translateX(-50%);
-      background: var(--accent);
-      color: var(--bg);
-      padding: 6px 20px;
-      border-radius: 50px;
-      font-size: 0.75rem;
-      font-weight: 600;
+      background: var(--gold);
+      color: #080808;
+      font-size: 0.625rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
+      padding: 5px 18px;
+      border-radius: 0 0 var(--r-md) var(--r-md);
     }
 
     .tier-name {
-      font-size: 1.5rem;
+      font-size: 1.125rem;
       font-weight: 700;
-      margin-bottom: 8px;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+      margin-bottom: var(--space-1);
     }
 
     .tier-min {
-      color: var(--muted);
-      font-size: 0.875rem;
-      margin-bottom: 24px;
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      margin-bottom: var(--space-6);
     }
 
     .tier-price {
       font-size: 3rem;
       font-weight: 700;
-      color: var(--accent);
-      margin-bottom: 8px;
+      color: var(--gold);
+      letter-spacing: -0.04em;
+      line-height: 1;
+      margin-bottom: var(--space-2);
     }
 
     .tier-price span {
       font-size: 1rem;
-      font-weight: 400;
-      color: var(--muted);
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: 0;
+    }
+
+    .tier-discount {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--gold);
+      background: var(--gold-subtle);
+      border: 1px solid var(--gold-border);
+      padding: 3px 10px;
+      border-radius: var(--r-full);
+      margin-bottom: var(--space-4);
+      letter-spacing: 0.03em;
     }
 
     .tier-tagline {
-      color: var(--muted);
-      font-size: 0.9375rem;
-      margin-bottom: 32px;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-bottom: var(--space-6);
+      font-style: italic;
     }
 
     .tier-features {
       list-style: none;
-      text-align: left;
-      margin-bottom: 32px;
+      margin-bottom: var(--space-8);
+      flex-grow: 1;
     }
 
     .tier-features li {
       display: flex;
       align-items: center;
-      gap: 12px;
-      padding: 12px 0;
+      gap: var(--space-3);
+      font-size: 0.875rem;
+      color: var(--text-body);
+      padding: var(--space-2) 0;
       border-bottom: 1px solid var(--border);
-      font-size: 0.9375rem;
     }
 
-    .tier-features li:last-child {
-      border-bottom: none;
-    }
+    .tier-features li:last-child { border-bottom: none; }
 
-    .tier-features svg {
-      width: 20px;
-      height: 20px;
-      fill: var(--accent);
+    .tier-features li svg {
+      width: 15px;
+      height: 15px;
+      stroke: var(--gold);
+      fill: none;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
       flex-shrink: 0;
     }
 
-    /* Why TLS */
+    .tier-cta {
+      width: 100%;
+      justify-content: center;
+      text-align: center;
+    }
+
+    /* =============================================
+       WHY TLS / SCIENCE
+       ============================================= */
     .why-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 32px;
+      gap: var(--space-5);
+      margin-bottom: var(--space-16);
     }
 
     .why-card {
-      background: var(--card);
+      background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 32px;
+      border-radius: var(--r-xl);
+      padding: var(--space-8);
       text-align: center;
-      transition: all var(--transition);
+      transition: all var(--t-slow) var(--ease);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .why-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-border), transparent);
+      opacity: 0;
+      transition: opacity var(--t-slow) var(--ease);
     }
 
     .why-card:hover {
-      border-color: var(--accent);
+      border-color: var(--gold-border);
       transform: translateY(-4px);
+      box-shadow: 0 16px 50px rgba(0,0,0,0.4);
     }
 
-    .why-icon {
-      width: 72px;
-      height: 72px;
-      background: var(--accent-dim);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 20px;
+    .why-card:hover::before { opacity: 1; }
+
+    .why-stat {
+      font-size: 3.5rem;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: var(--space-3);
+      text-shadow: 0 0 40px var(--gold-glow);
     }
 
-    .why-icon svg {
-      width: 32px;
-      height: 32px;
-      fill: var(--accent);
+    .why-stat-name {
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--gold);
+      line-height: 1.2;
+      margin-bottom: var(--space-3);
     }
 
     .why-card h3 {
-      font-size: 1.125rem;
+      font-size: 0.9375rem;
       font-weight: 600;
-      margin-bottom: 12px;
+      color: var(--text-primary);
+      margin-bottom: var(--space-3);
+      letter-spacing: -0.01em;
     }
 
     .why-card p {
-      color: var(--muted);
-      font-size: 0.9375rem;
+      font-size: 0.84375rem;
+      color: var(--text-muted);
+      line-height: 1.6;
     }
 
-    .why-stat {
-      font-size: 2rem;
+    .why-cta {
+      text-align: center;
+      padding: var(--space-12);
+      background: var(--gold-subtle);
+      border: 1px solid var(--gold-border);
+      border-radius: var(--r-2xl);
+    }
+
+    .why-cta-headline {
+      font-size: clamp(1.25rem, 2.5vw, 1.75rem);
       font-weight: 700;
-      color: var(--accent);
-      margin-bottom: 8px;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+      margin-bottom: var(--space-3);
     }
 
-    /* Apply / Form */
-    .apply {
-      background: var(--card);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
+    .why-cta-sub {
+      font-size: 0.9375rem;
+      color: var(--text-muted);
     }
 
-    .apply-grid {
+    /* =============================================
+       APPLICATION FORM
+       ============================================= */
+    .apply-wrapper {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .apply-form-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r-2xl);
+      padding: var(--space-10);
+    }
+
+    .form-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: start;
-    }
-
-    .apply-info h2 {
-      font-size: clamp(2rem, 3vw, 2.5rem);
-      font-weight: 700;
-      margin-bottom: 24px;
-    }
-
-    .apply-info p {
-      color: var(--muted);
-      font-size: 1.0625rem;
-      margin-bottom: 32px;
-    }
-
-    .apply-benefits {
-      list-style: none;
-    }
-
-    .apply-benefits li {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-      padding: 16px 0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .apply-benefits li:last-child {
-      border-bottom: none;
-    }
-
-    .apply-benefits svg {
-      width: 24px;
-      height: 24px;
-      fill: var(--accent);
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-
-    .apply-benefits strong {
-      display: block;
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-
-    .apply-benefits span {
-      color: var(--muted);
-      font-size: 0.875rem;
-    }
-
-    .apply-form-wrapper {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 40px;
+      gap: var(--space-4);
     }
 
     .form-group {
-      margin-bottom: 20px;
+      margin-bottom: var(--space-5);
     }
 
     .form-group label {
       display: block;
-      font-size: 0.875rem;
+      font-size: 0.8125rem;
       font-weight: 500;
-      margin-bottom: 8px;
-      color: var(--text);
+      color: var(--text-body);
+      margin-bottom: var(--space-2);
+      letter-spacing: 0.01em;
+    }
+
+    .required {
+      color: var(--gold);
+      margin-left: 2px;
     }
 
     .form-group input,
     .form-group select,
     .form-group textarea {
       width: 100%;
-      background: var(--card);
+      background: var(--bg-elevated);
       border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 14px 16px;
-      font-size: 1rem;
+      border-radius: var(--r-md);
+      padding: 11px 14px;
+      font-size: 0.9rem;
       font-family: var(--font);
-      color: var(--text);
-      transition: all var(--transition);
+      color: var(--text-primary);
+      transition: all var(--t-fast) var(--ease);
+      outline: none;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: var(--text-faint);
     }
 
     .form-group input:focus,
     .form-group select:focus,
     .form-group textarea:focus {
-      outline: none;
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px var(--accent-dim);
-    }
-
-    .form-group textarea {
-      min-height: 120px;
-      resize: vertical;
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px var(--gold-glow);
     }
 
     .form-group select {
       cursor: pointer;
       appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='%23666'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.4)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
       background-repeat: no-repeat;
       background-position: right 12px center;
-      background-size: 20px;
+      padding-right: 36px;
     }
 
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
+    .form-group select option {
+      background: var(--bg-elevated);
+      color: var(--text-primary);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
     }
 
     .form-submit {
       width: 100%;
-      margin-top: 8px;
+      justify-content: center;
+      font-size: 1rem;
+      padding: 15px 28px;
+      margin-top: var(--space-2);
+    }
+
+    .form-submit:hover {
+      box-shadow: 0 8px 40px var(--gold-glow);
     }
 
     .form-note {
       text-align: center;
-      font-size: 0.8125rem;
-      color: var(--muted);
-      margin-top: 16px;
+      font-size: 0.8rem;
+      color: var(--text-faint);
+      margin-top: var(--space-4);
+      letter-spacing: 0.01em;
     }
 
-    /* FAQ */
+    /* =============================================
+       FAQ
+       ============================================= */
     .faq-list {
-      max-width: 800px;
+      max-width: 720px;
       margin: 0 auto;
     }
 
@@ -789,323 +1169,355 @@
 
     .faq-question {
       width: 100%;
-      background: none;
-      border: none;
-      padding: 24px 0;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: var(--space-4);
+      padding: var(--space-6) 0;
+      background: none;
+      border: none;
       cursor: pointer;
-      font-size: 1.0625rem;
-      font-weight: 500;
-      font-family: var(--font);
-      color: var(--text);
       text-align: left;
-      transition: all var(--transition);
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      font-family: var(--font);
+      transition: color var(--t-fast) var(--ease);
     }
 
-    .faq-question:hover {
-      color: var(--accent);
-    }
+    .faq-question:hover { color: var(--gold); }
 
-    .faq-question svg {
-      width: 24px;
-      height: 24px;
-      fill: var(--accent);
-      transition: transform var(--transition);
+    .faq-question[aria-expanded="true"] { color: var(--gold); }
+
+    .faq-icon {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 1px solid var(--border-strong);
+      display: flex;
+      align-items: center;
+      justify-content: center;
       flex-shrink: 0;
+      transition: all var(--t-base) var(--ease);
+      position: relative;
     }
 
-    .faq-item.active .faq-question svg {
-      transform: rotate(45deg);
+    .faq-icon::before,
+    .faq-icon::after {
+      content: '';
+      position: absolute;
+      background: currentColor;
+      transition: all var(--t-base) var(--ease);
+    }
+
+    .faq-icon::before {
+      width: 8px; height: 1.5px;
+    }
+
+    .faq-icon::after {
+      width: 1.5px; height: 8px;
+    }
+
+    .faq-question:hover .faq-icon {
+      border-color: var(--gold-border);
+      color: var(--gold);
+    }
+
+    .faq-question[aria-expanded="true"] .faq-icon {
+      border-color: var(--gold);
+      background: var(--gold-subtle);
+      color: var(--gold);
+    }
+
+    .faq-question[aria-expanded="true"] .faq-icon::after {
+      transform: rotate(90deg);
+      opacity: 0;
     }
 
     .faq-answer {
       max-height: 0;
       overflow: hidden;
-      transition: max-height 0.4s ease;
+      transition: max-height var(--t-slow) var(--ease);
+    }
+
+    .faq-answer[aria-hidden="false"] {
+      max-height: 300px;
     }
 
     .faq-answer-inner {
-      padding-bottom: 24px;
-      color: var(--muted);
+      padding-bottom: var(--space-6);
       font-size: 0.9375rem;
+      color: var(--text-muted);
       line-height: 1.7;
     }
 
-    .faq-item.active .faq-answer {
-      max-height: 500px;
-    }
-
-    /* Footer */
+    /* =============================================
+       FOOTER
+       ============================================= */
     .footer {
-      background: var(--card);
+      background: var(--bg-elevated);
       border-top: 1px solid var(--border);
-      padding: 60px 0 40px;
+      padding: var(--space-16) 0 var(--space-10);
     }
 
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 48px;
-      margin-bottom: 48px;
-    }
-
-    .footer-brand p {
-      color: var(--muted);
-      font-size: 0.9375rem;
-      margin-top: 16px;
-      max-width: 300px;
-    }
-
-    .footer-col h4 {
-      font-size: 0.875rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 20px;
-      color: var(--text);
-    }
-
-    .footer-col ul {
-      list-style: none;
-    }
-
-    .footer-col li {
-      margin-bottom: 12px;
-    }
-
-    .footer-col a {
-      color: var(--muted);
-      font-size: 0.9375rem;
-      transition: all var(--transition);
-    }
-
-    .footer-col a:hover {
-      color: var(--accent);
-    }
-
-    .footer-bottom {
-      padding-top: 32px;
-      border-top: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      color: var(--muted);
-      font-size: 0.875rem;
+    .footer-inner {
+      text-align: center;
     }
 
     .footer-logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      margin-bottom: var(--space-4);
+    }
+
+    .footer-logo .accent { color: var(--gold); }
+
+    .footer-tagline {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      max-width: 400px;
+      margin: 0 auto var(--space-8);
+      line-height: 1.6;
+    }
+
+    .footer-nav {
       display: flex;
       align-items: center;
-      gap: 10px;
-      font-weight: 700;
-      font-size: 1.125rem;
-      color: var(--text);
+      justify-content: center;
+      gap: var(--space-6);
+      flex-wrap: wrap;
+      margin-bottom: var(--space-8);
     }
 
-    .footer-logo svg {
-      width: 28px;
-      height: 28px;
-      fill: var(--accent);
+    .footer-nav a {
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      transition: color var(--t-fast) var(--ease);
     }
 
-    /* Responsive */
-    @media (max-width: 1024px) {
-      .hero-grid {
+    .footer-nav a:hover { color: var(--gold); }
+
+    .footer-divider {
+      height: 1px;
+      background: var(--border);
+      margin-bottom: var(--space-6);
+    }
+
+    .footer-bottom {
+      font-size: 0.75rem;
+      color: var(--text-faint);
+      letter-spacing: 0.02em;
+    }
+
+    /* =============================================
+       RESPONSIVE
+       ============================================= */
+    @media (max-width: 768px) {
+      .hero-inner {
         grid-template-columns: 1fr;
-        gap: 48px;
         text-align: center;
       }
 
-      .hero-content {
-        order: 1;
-      }
+      .hero-content { max-width: 100%; }
+      .hero-description { margin: 0 auto var(--space-10); }
+      .hero-actions { justify-content: center; }
+      .hero-trust { justify-content: center; }
 
-      .hero-image {
-        order: 0;
-      }
-
-      .hero-subtitle {
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      .hero-cta-group {
-        justify-content: center;
-      }
-
-      .hero-trust {
-        justify-content: center;
-        flex-wrap: wrap;
-      }
+      .hero-visual { display: none; }
 
       .steps-grid {
         grid-template-columns: 1fr;
-        gap: 40px;
+        gap: var(--space-4);
       }
 
-      .step-arrow {
-        display: none;
+      .steps-grid::before { display: none; }
+
+      .tiers-grid {
+        grid-template-columns: 1fr;
+        max-width: 440px;
       }
 
       .why-grid {
         grid-template-columns: 1fr;
-      }
-
-      .apply-grid {
-        grid-template-columns: 1fr;
-        gap: 48px;
-      }
-
-      .tiers-grid {
-        grid-template-columns: 1fr;
-        max-width: 500px;
-      }
-
-      .footer-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .section {
-        padding: 60px 0;
-      }
-
-      .hero {
-        padding: 100px 0 60px;
-        min-height: auto;
-      }
-
-      .hero h1 {
-        font-size: 2rem;
-      }
-
-      .hero-cta-group {
-        flex-direction: column;
-      }
-
-      .btn-primary,
-      .btn-secondary {
-        width: 100%;
-        justify-content: center;
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
       }
 
       .form-row {
         grid-template-columns: 1fr;
       }
 
-      .footer-grid {
-        grid-template-columns: 1fr;
-        gap: 32px;
+      .apply-form-card {
+        padding: var(--space-6);
       }
 
-      .footer-bottom {
+      .nav-badge { display: none; }
+
+      .hero-headline {
+        font-size: clamp(2.25rem, 8vw, 3rem);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero { padding-top: 100px; }
+
+      .hero-actions {
         flex-direction: column;
-        gap: 16px;
+        align-items: stretch;
+      }
+
+      .btn-primary, .btn-ghost {
+        justify-content: center;
         text-align: center;
-      }
-
-      .nav-cta {
-        display: none;
-      }
-
-      .apply-form-wrapper {
-        padding: 24px;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Navigation -->
+  <!-- =============================================
+       NAVIGATION
+       ============================================= -->
   <nav class="nav">
-    <div class="container nav-inner">
-      <div class="nav-logo">
-        <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" stroke-width="2"/>
-          <circle cx="20" cy="20" r="8" fill="currentColor"/>
-        </svg>
-        The Light System <span>Wholesale</span>
+    <div class="container">
+      <div class="nav-inner">
+        <a href="#" class="nav-logo">
+          <div class="nav-logo-mark">
+            <svg viewBox="0 0 24 24"><polygon points="12,2 22,12 12,22 2,12"/></svg>
+          </div>
+          TLS <span>Wholesale</span>
+        </a>
+        <div class="nav-right">
+          <div class="nav-badge">
+            <span class="nav-badge-dot"></span>
+            Early Access Open
+          </div>
+          <a href="#apply" class="nav-cta">
+            Apply Now
+            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
       </div>
-      <a href="#apply" class="nav-cta">Apply Now</a>
     </div>
   </nav>
 
-  <!-- Hero -->
+  <!-- =============================================
+       HERO
+       ============================================= -->
   <section class="hero">
     <div class="container">
-      <div class="hero-grid">
+      <div class="hero-inner">
         <div class="hero-content">
-          <div class="hero-badge">Early Access Open</div>
-          <h1>Feel Better.<br><span class="accent">Function Better.</span><br>Live Better.</h1>
-          <p class="hero-subtitle">Wholesale Access for TLS Partners — Premium wellness technology backed by science, trusted by practitioners worldwide.</p>
-          <div class="hero-cta-group">
+          <div class="hero-eyebrow">
+            <span class="hero-eyebrow-dot"></span>
+            Wholesale Portal
+          </div>
+          <h1 class="hero-headline">
+            <span class="hero-headline-line">Feel Better.</span>
+            <span class="hero-headline-line">Function Better.</span>
+            <span class="hero-headline-line">Live Better.</span>
+          </h1>
+          <p class="hero-description">
+            Exclusive wholesale access for TLS partners. Premium wellness technology backed by science — trusted by practitioners worldwide.
+          </p>
+          <div class="hero-actions">
             <a href="#apply" class="btn-primary">
               Apply for Early Access
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+              <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </a>
-            <a href="#how-it-works" class="btn-secondary">
+            <a href="#how-it-works" class="btn-ghost">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
               See How It Works
             </a>
           </div>
           <div class="hero-trust">
             <div class="hero-trust-item">
-              <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-              Free for Early Partners
-            </div>
-            <div class="hero-trust-item">
-              <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
               Lab-Backed Results
             </div>
             <div class="hero-trust-item">
-              <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-              Exclusive Pricing
+              <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              Up to 35% Wholesale Discount
+            </div>
+            <div class="hero-trust-item">
+              <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              500+ Partner Practices
             </div>
           </div>
         </div>
-        <div class="hero-image">
-          <div class="hero-image-wrapper">
-            <img src="https://static.wixstatic.com/media/f5cf25_b5b217ff502d4ed9a89564834dde0f7c~mv2.png/v1/fill/w_425,h_339,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/family-of-light.png" alt="TLS Family of Light - CUBE, SPHERE, and medallion products">
-            <div class="hero-urgency">Free Early Access — $99/year after launch</div>
+
+        <div class="hero-visual">
+          <div class="hero-visual-orb">
+            <div class="hero-rings">
+              <svg viewBox="0 0 420 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="210" cy="210" r="180" stroke="rgba(212,168,67,0.12)" stroke-width="1"/>
+                <circle cx="210" cy="210" r="140" stroke="rgba(212,168,67,0.18)" stroke-width="1" stroke-dasharray="4 8"/>
+                <circle cx="210" cy="210" r="100" stroke="rgba(212,168,67,0.25)" stroke-width="0.75"/>
+                <g transform="translate(210,210)">
+                  <polygon points="0,-90 78,45 -78,45" stroke="rgba(212,168,67,0.2)" stroke-width="0.75" fill="none"/>
+                  <polygon points="0,90 -78,-45 78,-45" stroke="rgba(212,168,67,0.2)" stroke-width="0.75" fill="none"/>
+                </g>
+                <circle cx="80" cy="80" r="3" fill="rgba(212,168,67,0.6)"/>
+                <circle cx="340" cy="340" r="2" fill="rgba(212,168,67,0.4)"/>
+                <circle cx="360" cy="130" r="1.5" fill="rgba(212,168,67,0.3)"/>
+              </svg>
+            </div>
+            <div class="hero-core">
+              <div class="hero-core-inner">
+                <!-- Supercharged medallion SVG icon -->
+                <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <polygon points="40,6 70,40 40,74 10,40" stroke-width="1.5"/>
+                  <polygon points="40,18 58,40 40,62 22,40" stroke-width="1"/>
+                  <circle cx="40" cy="40" r="6" stroke-width="1.5"/>
+                  <circle cx="40" cy="40" r="2" fill="#D4A843" stroke="none"/>
+                </svg>
+              </div>
+              <div class="hero-urgency-banner">
+                <span>Free Early Access</span> — $99/year after launch
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- How It Works -->
-  <section id="how-it-works" class="section how-it-works">
+  <!-- =============================================
+       HOW IT WORKS
+       ============================================= -->
+  <section id="how-it-works" class="section section-alt">
     <div class="container">
       <div class="section-header">
         <span class="section-label">Process</span>
         <h2 class="section-title">How Wholesale Access Works</h2>
-        <p class="section-subtitle">Three simple steps to join our exclusive partner network and start offering TLS products to your clients.</p>
+        <p class="section-subtitle">Three steps to join our exclusive partner network and start offering TLS to your clients.</p>
       </div>
       <div class="steps-grid">
         <div class="step">
           <div class="step-number">1</div>
           <h3>Submit Application</h3>
-          <p>Complete our brief application form with your business details. Approval typically within 24-48 hours.</p>
-          <svg class="step-arrow" viewBox="0 0 48 24"><path d="M0 12h44m0 0l-8-8m8 8l-8 8" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+          <p>Complete our brief form with your business details. Approval typically within 24–48 hours.</p>
         </div>
         <div class="step">
           <div class="step-number">2</div>
           <h3>Get Approved</h3>
-          <p>Once approved, you'll receive your wholesale login credentials and welcome package with product resources.</p>
-          <svg class="step-arrow" viewBox="0 0 48 24"><path d="M0 12h44m0 0l-8-8m8 8l-8 8" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+          <p>Receive your wholesale credentials and welcome package with product resources and training.</p>
         </div>
         <div class="step">
           <div class="step-number">3</div>
-          <h3>Access Wholesale Pricing</h3>
-          <p>Log in to your wholesale portal and order directly at exclusive partner pricing with flexible minimums.</p>
+          <h3>Access Pricing</h3>
+          <p>Log in to your portal and order directly at exclusive partner pricing with flexible minimums.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Products -->
+  <!-- =============================================
+       PRODUCTS
+       ============================================= -->
   <section id="products" class="section">
     <div class="container">
       <div class="section-header">
@@ -1114,57 +1526,128 @@
         <p class="section-subtitle">Industry-leading wellness technology designed for practitioners who demand the best for their clients.</p>
       </div>
       <div class="products-grid">
+
+        <!-- Supercharged Medallion — featured -->
         <div class="product-card featured">
           <span class="product-badge">Flagship</span>
-          <div class="product-icon">◆</div>
+          <div class="product-icon">
+            <svg viewBox="0 0 28 28">
+              <polygon points="14,2 26,14 14,26 2,14"/>
+              <polygon points="14,7 21,14 14,21 7,14"/>
+              <circle cx="14" cy="14" r="2.5" stroke-width="1.5"/>
+            </svg>
+          </div>
           <h3>Supercharged Medallion</h3>
           <p>Our most powerful medallion, engineered with enhanced scalar wave technology for maximum bioenergetic impact.</p>
           <div class="product-highlight">
-            <svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
-            44x Greater Impact — Lab Studied
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            44× Greater Impact
           </div>
         </div>
+
+        <!-- Standard Medallion -->
         <div class="product-card">
-          <div class="product-icon">◇</div>
+          <div class="product-icon">
+            <svg viewBox="0 0 28 28">
+              <polygon points="14,3 25,14 14,25 3,14"/>
+              <line x1="14" y1="3" x2="14" y2="25" stroke-width="1"/>
+              <line x1="3" y1="14" x2="25" y2="14" stroke-width="1"/>
+            </svg>
+          </div>
           <h3>Standard Medallion</h3>
           <p>Our foundational medallion delivering proven wellness benefits through proprietary scalar wave technology.</p>
         </div>
+
+        <!-- Wellness Bracelet -->
         <div class="product-card">
-          <div class="product-icon">○</div>
+          <div class="product-icon">
+            <svg viewBox="0 0 28 28">
+              <ellipse cx="14" cy="14" rx="11" ry="8" stroke-width="1.5"/>
+              <ellipse cx="14" cy="14" rx="7.5" ry="5.5" stroke-width="1" opacity="0.5"/>
+              <circle cx="14" cy="6" r="2" stroke-width="1.5"/>
+            </svg>
+          </div>
           <h3>Wellness Bracelet</h3>
           <p>Elegant wearable technology designed for daily support, combining style with functional wellness benefits.</p>
         </div>
+
+        <!-- CUBE mini -->
         <div class="product-card">
-          <div class="product-icon">□</div>
+          <div class="product-icon">
+            <svg viewBox="0 0 28 28">
+              <path d="M9 9 L14 6 L20 9 L20 19 L14 22 L9 19 Z" stroke-width="1.5"/>
+              <path d="M9 9 L14 12 L20 9" stroke-width="1"/>
+              <line x1="14" y1="12" x2="14" y2="22" stroke-width="1"/>
+            </svg>
+          </div>
           <h3>CUBE mini</h3>
           <p>Compact scalar wave emitter, perfect for personal use and travel. Discrete yet powerful technology on the go.</p>
         </div>
+
+        <!-- CUBE -->
         <div class="product-card">
-          <div class="product-icon">■</div>
+          <div class="product-icon">
+            <svg viewBox="0 0 28 28">
+              <path d="M5 8 L14 3 L23 8 L23 20 L14 25 L5 20 Z" stroke-width="1.5"/>
+              <path d="M5 8 L14 13 L23 8" stroke-width="1"/>
+              <line x1="14" y1="13" x2="14" y2="25" stroke-width="1"/>
+              <circle cx="14" cy="14" r="2" stroke-width="1.5"/>
+            </svg>
+          </div>
           <h3>CUBE</h3>
           <p>Our flagship device delivering powerful scalar wave therapy in a sleek, professional-grade unit for clinic or home.</p>
         </div>
+
+        <!-- SPHERE -->
         <div class="product-card">
-          <div class="product-icon">◉</div>
+          <div class="product-icon">
+            <svg viewBox="0 0 28 28">
+              <circle cx="14" cy="14" r="10" stroke-width="1.5"/>
+              <ellipse cx="14" cy="14" rx="10" ry="3.5" stroke-width="1"/>
+              <ellipse cx="14" cy="14" rx="3.5" ry="10" stroke-width="1"/>
+              <circle cx="14" cy="14" r="2" stroke-width="1.5"/>
+            </svg>
+          </div>
           <h3>SPHERE</h3>
           <p>Omnidirectional scalar wave device for whole-body exposure. Ideal for treatment rooms and shared spaces.</p>
         </div>
+
+        <!-- PYRAMID -->
         <div class="product-card">
-          <div class="product-icon">▲</div>
+          <div class="product-icon">
+            <svg viewBox="0 0 28 28">
+              <path d="M14 3 L25 23 L3 23 Z" stroke-width="1.5"/>
+              <line x1="14" y1="3" x2="14" y2="23" stroke-width="1" opacity="0.5"/>
+              <line x1="3" y1="23" x2="25" y2="23" stroke-width="1"/>
+            </svg>
+          </div>
           <h3>PYRAMID</h3>
           <p>Ancient geometry meets modern technology. Pyramid structure designed to amplify scalar wave emissions.</p>
         </div>
+
+        <!-- CHAIR -->
         <div class="product-card">
-          <div class="product-icon">⊞</div>
+          <div class="product-icon">
+            <svg viewBox="0 0 28 28">
+              <path d="M7 5 L7 16 L21 16 L21 5" stroke-width="1.5"/>
+              <path d="M5 16 L5 24" stroke-width="1.5"/>
+              <path d="M23 16 L23 24" stroke-width="1.5"/>
+              <line x1="3" y1="24" x2="25" y2="24" stroke-width="1.5"/>
+              <line x1="7" y1="10" x2="21" y2="10" stroke-width="1"/>
+            </svg>
+          </div>
           <h3>CHAIR</h3>
           <p>Full-body wellness system. Experience comprehensive scalar wave therapy while relaxing in complete comfort.</p>
         </div>
+
       </div>
     </div>
   </section>
 
-  <!-- Wholesale Tiers -->
-  <section id="tiers" class="section tiers">
+  <!-- =============================================
+       WHOLESALE TIERS
+       ============================================= -->
+  <section id="tiers" class="section section-alt">
     <div class="container">
       <div class="section-header">
         <span class="section-label">Wholesale Pricing</span>
@@ -1172,73 +1655,83 @@
         <p class="section-subtitle">Choose the membership level that fits your business. Both tiers include full wholesale pricing access.</p>
       </div>
       <div class="tiers-grid">
+
+        <!-- Entry Tier -->
         <div class="tier-card">
           <div class="tier-name">Entry Tier</div>
-          <div class="tier-min">$1,000 minimum order</div>
-          <div class="tier-price">$1,000 <span>/ month</span></div>
-          <div class="tier-tagline">Perfect for starting your TLS journey</div>
+          <div class="tier-min">$1,000 minimum monthly order</div>
+          <div class="tier-price">$1,000<span> / month</span></div>
+          <div class="tier-discount">Up to 25% off all products</div>
+          <p class="tier-tagline">Perfect for starting your TLS journey.</p>
           <ul class="tier-features">
             <li>
-              <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
               Up to 25% discount on all products
             </li>
             <li>
-              <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
               Quarterly restocking credits
             </li>
             <li>
-              <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
               Digital marketing materials
             </li>
             <li>
-              <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
               Email support
             </li>
             <li>
-              <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-              Access to all products
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Access to all TLS products
             </li>
           </ul>
-          <a href="#apply" class="btn-primary" style="width:100%; justify-content:center;">Apply for Entry Tier</a>
+          <a href="#apply" class="btn-primary tier-cta">Apply for Entry Tier</a>
         </div>
+
+        <!-- Preferred Tier (featured) -->
         <div class="tier-card featured">
+          <div class="tier-ribbon">Most Popular</div>
           <div class="tier-name">Preferred Tier</div>
-          <div class="tier-min">$1,700 minimum order</div>
-          <div class="tier-price">$1,700 <span>/ month</span></div>
-          <div class="tier-tagline">Maximum margins for established partners</div>
+          <div class="tier-min">$1,700 minimum monthly order</div>
+          <div class="tier-price">$1,700<span> / month</span></div>
+          <div class="tier-discount">Up to 35% off all products</div>
+          <p class="tier-tagline">Maximum margins for established partners.</p>
           <ul class="tier-features">
             <li>
-              <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
               Up to 35% discount on all products
             </li>
             <li>
-              <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
               Monthly restocking credits
             </li>
             <li>
-              <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
               Full marketing asset library
             </li>
             <li>
-              <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-              Priority phone & chat support
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Priority phone &amp; chat support
             </li>
             <li>
-              <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
               Early access to new products
             </li>
             <li>
-              <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
               Exclusive Preferred Partner events
             </li>
           </ul>
-          <a href="#apply" class="btn-primary" style="width:100%; justify-content:center;">Apply for Preferred Tier</a>
+          <a href="#apply" class="btn-primary tier-cta">Apply for Preferred Tier</a>
         </div>
+
       </div>
     </div>
   </section>
 
-  <!-- Why TLS -->
+  <!-- =============================================
+       WHY TLS / SCIENCE
+       ============================================= -->
   <section id="why" class="section">
     <div class="container">
       <div class="section-header">
@@ -1247,112 +1740,73 @@
         <p class="section-subtitle">TLS technology isn't just another wellness product. It's backed by rigorous science and real clinical results.</p>
       </div>
       <div class="why-grid">
+
         <div class="why-card">
-          <div class="why-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-          </div>
-          <div class="why-stat">44x</div>
+          <div class="why-stat">44×</div>
           <h3>Greater Impact</h3>
-          <p>The Supercharged Medallion demonstrated 44x greater bioenergetic impact compared to standard medallions in independent lab testing.</p>
+          <p>The Supercharged Medallion demonstrated 44× greater bioenergetic impact compared to standard medallions in independent lab testing.</p>
         </div>
+
         <div class="why-card">
-          <div class="why-icon">
-            <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14h-2v-4H6v-2h4V7h2v4h4v2h-4v4z"/></svg>
-          </div>
           <div class="why-stat">+80%</div>
           <h3>Vm Study Results</h3>
           <p>Independent testing showed an 80% improvement in Vm (mean velocity) measurements compared to baseline readings.</p>
         </div>
+
         <div class="why-card">
-          <div class="why-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77V2z"/></svg>
-          </div>
-          <h3>Dr. Glen Rein Research</h3>
+          <div class="why-stat-name">Dr. Glen<br>Rein</div>
+          <h3>Lead Researcher</h3>
           <p>Developed in collaboration with Dr. Glen Rein, a leading researcher in quantum biology and bioenergetic medicine with 30+ years of experience.</p>
         </div>
+
       </div>
-      <div style="text-align:center; margin-top:48px; padding:32px; background:var(--card); border-radius:12px; border:1px solid var(--border);">
-        <p style="font-size:1.125rem; color:var(--text); margin-bottom:8px; font-weight:500;">Your clients deserve the best. Your margins deserve TLS.</p>
-        <p style="color:var(--muted); font-size:0.9375rem;">Join hundreds of practitioners who have upgraded their practice with TLS technology.</p>
+      <div class="why-cta">
+        <p class="why-cta-headline">Your clients deserve the best. Your margins deserve TLS.</p>
+        <p class="why-cta-sub">Join hundreds of practitioners who have upgraded their practice with TLS technology.</p>
       </div>
     </div>
   </section>
 
-  <!-- Apply -->
-  <section id="apply" class="section apply">
+  <!-- =============================================
+       APPLICATION FORM
+       ============================================= -->
+  <section id="apply" class="section section-alt">
     <div class="container">
-      <div class="apply-grid">
-        <div class="apply-info">
-          <span class="section-label">Join Now</span>
-          <h2>Become a TLS Partner</h2>
-          <p>Your clients are looking for solutions that work. TLS provides the science-backed technology you need to differentiate your practice and increase revenue.</p>
-          <ul class="apply-benefits">
-            <li>
-              <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-              <div>
-                <strong>Exclusive Wholesale Pricing</strong>
-                <span>Up to 35% below retail on all products</span>
-              </div>
-            </li>
-            <li>
-              <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-              <div>
-                <strong>Flexible Minimum Orders</strong>
-                <span>Start with Entry Tier at just $1,000/month</span>
-              </div>
-            </li>
-            <li>
-              <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-              <div>
-                <strong>Marketing Support</strong>
-                <span>Ready-to-use assets and product training</span>
-              </div>
-            </li>
-            <li>
-              <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-              <div>
-                <strong>Dedicated Support</strong>
-                <span>Personal account manager for Preferred Partners</span>
-              </div>
-            </li>
-            <li>
-              <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-              <div>
-                <strong>Early Access Program</strong>
-                <span>Free access now — $99/year after public launch</span>
-              </div>
-            </li>
-          </ul>
-        </div>
-        <div class="apply-form-wrapper">
-          <form id="wholesale-form" action="#" method="post">
+      <div class="section-header">
+        <span class="section-label">Join Now</span>
+        <h2 class="section-title">Become a TLS Partner</h2>
+        <p class="section-subtitle">Your clients are looking for solutions that work. Apply now for free early access — no annual fee for a limited time.</p>
+      </div>
+      <div class="apply-wrapper">
+        <div class="apply-form-card">
+          <form id="wholesale-form" action="#" method="post" novalidate>
             <div class="form-row">
               <div class="form-group">
-                <label for="business_name">Business Name *</label>
-                <input type="text" id="business_name" name="business_name" required placeholder="Your business name">
+                <label for="business_name">Business Name<span class="required">*</span></label>
+                <input type="text" id="business_name" name="business_name" required placeholder="Your business name" autocomplete="organization">
               </div>
               <div class="form-group">
-                <label for="contact_name">Contact Name *</label>
-                <input type="text" id="contact_name" name="contact_name" required placeholder="Your full name">
+                <label for="contact_name">Contact Name<span class="required">*</span></label>
+                <input type="text" id="contact_name" name="contact_name" required placeholder="Your full name" autocomplete="name">
               </div>
             </div>
             <div class="form-row">
               <div class="form-group">
-                <label for="email">Email Address *</label>
-                <input type="email" id="email" name="email" required placeholder="you@business.com">
+                <label for="email">Email Address<span class="required">*</span></label>
+                <input type="email" id="email" name="email" required placeholder="you@business.com" autocomplete="email">
               </div>
               <div class="form-group">
-                <label for="phone">Phone Number *</label>
-                <input type="tel" id="phone" name="phone" required placeholder="+1 (555) 000-0000">
+                <label for="phone">Phone Number<span class="required">*</span></label>
+                <input type="tel" id="phone" name="phone" required placeholder="+1 (555) 000-0000" autocomplete="tel">
               </div>
             </div>
             <div class="form-group">
               <label for="website">Website</label>
-              <input type="url" id="website" name="website" placeholder="https://yourbusiness.com">
+              <input type="url" id="website" name="website" placeholder="https://yourbusiness.com" autocomplete="url">
             </div>
             <div class="form-row">
               <div class="form-group">
-                <label for="business_type">Business Type *</label>
+                <label for="business_type">Business Type<span class="required">*</span></label>
                 <select id="business_type" name="business_type" required>
                   <option value="">Select type...</option>
                   <option value="practitioner">Health Practitioner</option>
@@ -1364,12 +1818,12 @@
                 </select>
               </div>
               <div class="form-group">
-                <label for="volume">Estimated Monthly Volume *</label>
+                <label for="volume">Est. Monthly Volume<span class="required">*</span></label>
                 <select id="volume" name="volume" required>
                   <option value="">Select range...</option>
-                  <option value="1000-2500">$1,000 - $2,500</option>
-                  <option value="2500-5000">$2,500 - $5,000</option>
-                  <option value="5000-10000">$5,000 - $10,000</option>
+                  <option value="1000-2500">$1,000 – $2,500</option>
+                  <option value="2500-5000">$2,500 – $5,000</option>
+                  <option value="5000-10000">$5,000 – $10,000</option>
                   <option value="10000+">$10,000+</option>
                 </select>
               </div>
@@ -1378,15 +1832,20 @@
               <label for="message">Message / Questions</label>
               <textarea id="message" name="message" placeholder="Tell us about your practice and how you plan to use TLS products..."></textarea>
             </div>
-            <button type="submit" class="btn-primary form-submit">Submit Application</button>
-            <p class="form-note">Applications typically approved within 24-48 hours. Free early access for a limited time.</p>
+            <button type="submit" class="btn-primary form-submit">
+              Submit Application
+              <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </button>
+            <p class="form-note">Approved within 24–48 hours · Free early access for a limited time</p>
           </form>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- FAQ -->
+  <!-- =============================================
+       FAQ
+       ============================================= -->
   <section id="faq" class="section">
     <div class="container">
       <div class="section-header">
@@ -1395,131 +1854,102 @@
         <p class="section-subtitle">Everything you need to know about becoming a TLS wholesale partner.</p>
       </div>
       <div class="faq-list">
+
         <div class="faq-item">
-          <button class="faq-question" aria-expanded="false">
-            What are the minimum order requirements?
-            <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+          <button class="faq-question" aria-expanded="false" aria-controls="faq-1">
+            <span>What are the minimum order requirements?</span>
+            <span class="faq-icon" aria-hidden="true"></span>
           </button>
-          <div class="faq-answer">
+          <div class="faq-answer" id="faq-1" aria-hidden="true">
             <div class="faq-answer-inner">
               Entry Tier partners require a minimum monthly order of $1,000. Preferred Tier partners require a minimum of $1,700 per month. These minimums ensure you maintain your wholesale pricing and partner status. Orders can include any combination of TLS products.
             </div>
           </div>
         </div>
+
         <div class="faq-item">
-          <button class="faq-question" aria-expanded="false">
-            What payment terms are available?
-            <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+          <button class="faq-question" aria-expanded="false" aria-controls="faq-2">
+            <span>What payment terms are available?</span>
+            <span class="faq-icon" aria-hidden="true"></span>
           </button>
-          <div class="faq-answer">
+          <div class="faq-answer" id="faq-2" aria-hidden="true">
             <div class="faq-answer-inner">
               We offer net-30 terms for established Preferred Tier partners with approved credit. New partners typically pay upfront via credit card or ACH. We also accept payment through major financing options for larger orders. Contact your account manager to discuss payment arrangements.
             </div>
           </div>
         </div>
+
         <div class="faq-item">
-          <button class="faq-question" aria-expanded="false">
-            How does shipping work for wholesale orders?
-            <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+          <button class="faq-question" aria-expanded="false" aria-controls="faq-3">
+            <span>How does shipping work for wholesale orders?</span>
+            <span class="faq-icon" aria-hidden="true"></span>
           </button>
-          <div class="faq-answer">
+          <div class="faq-answer" id="faq-3" aria-hidden="true">
             <div class="faq-answer-inner">
-              All wholesale orders ship free within the continental United States. International shipping is available with competitive rates. Orders typically ship within 2-3 business days, with most domestic deliveries arriving within 5-7 business days. Expedited shipping options are available for urgent orders.
+              All wholesale orders ship free within the continental United States. International shipping is available with competitive rates. Orders typically ship within 2–3 business days, with most domestic deliveries arriving within 5–7 business days. Expedited shipping options are available for urgent orders.
             </div>
           </div>
         </div>
+
         <div class="faq-item">
-          <button class="faq-question" aria-expanded="false">
-            Can I return unsold inventory?
-            <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+          <button class="faq-question" aria-expanded="false" aria-controls="faq-4">
+            <span>Can I return unsold inventory?</span>
+            <span class="faq-icon" aria-hidden="true"></span>
           </button>
-          <div class="faq-answer">
+          <div class="faq-answer" id="faq-4" aria-hidden="true">
             <div class="faq-answer-inner">
               Preferred Tier partners enjoy a 30-day return policy on unopened, resalable inventory. Entry Tier partners have a 15-day window. This policy gives you flexibility to test products in your market without excessive risk. Contact support to initiate a return authorization.
             </div>
           </div>
         </div>
+
         <div class="faq-item">
-          <button class="faq-question" aria-expanded="false">
-            Is there training available for TLS products?
-            <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+          <button class="faq-question" aria-expanded="false" aria-controls="faq-5">
+            <span>Is there training available for TLS products?</span>
+            <span class="faq-icon" aria-hidden="true"></span>
           </button>
-          <div class="faq-answer">
+          <div class="faq-answer" id="faq-5" aria-hidden="true">
             <div class="faq-answer-inner">
               Yes. All partners receive access to our comprehensive product training library, including video demonstrations, scientific research summaries, and talking points for clients. Preferred Tier partners also get live training sessions with our product specialists and priority invitations to exclusive educational events.
             </div>
           </div>
         </div>
+
         <div class="faq-item">
-          <button class="faq-question" aria-expanded="false">
-            What's included in the early access program?
-            <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+          <button class="faq-question" aria-expanded="false" aria-controls="faq-6">
+            <span>What's included in the early access program?</span>
+            <span class="faq-icon" aria-hidden="true"></span>
           </button>
-          <div class="faq-answer">
+          <div class="faq-answer" id="faq-6" aria-hidden="true">
             <div class="faq-answer-inner">
               Early access partners receive full wholesale pricing with no annual fees — free for a limited time. After our public launch, early access converts to a $99/year membership. You'll lock in your rate permanently and get first access to new products as they're released.
             </div>
           </div>
         </div>
+
       </div>
     </div>
   </section>
 
-  <!-- Footer -->
+  <!-- =============================================
+       FOOTER
+       ============================================= -->
   <footer class="footer">
     <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <div class="footer-logo">
-            <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" stroke-width="2"/>
-              <circle cx="20" cy="20" r="8" fill="currentColor"/>
-            </svg>
-            The Light System
-          </div>
-          <p>Premium wellness technology backed by science. Transforming lives through innovative scalar wave solutions.</p>
-        </div>
-        <div class="footer-col">
-          <h4>Products</h4>
-          <ul>
-            <li><a href="#products">Medallions</a></li>
-            <li><a href="#products">Bracelets</a></li>
-            <li><a href="#products">CUBE Devices</a></li>
-            <li><a href="#products">SPHERE</a></li>
-            <li><a href="#products">PYRAMID</a></li>
-            <li><a href="#products">CHAIR</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Company</h4>
-          <ul>
-            <li><a href="https://www.thelightsystems.com/" target="_blank" rel="noopener">About TLS</a></li>
-            <li><a href="#why">Science</a></li>
-            <li><a href="#how-it-works">Partner Program</a></li>
-            <li><a href="#apply">Apply Now</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Support</h4>
-          <ul>
-            <li><a href="#faq">FAQ</a></li>
-            <li><a href="#apply">Contact Us</a></li>
-            <li><a href="#">Shipping Info</a></li>
-            <li><a href="#">Returns Policy</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <div class="footer-logo">
-          <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" stroke-width="2"/>
-            <circle cx="20" cy="20" r="8" fill="currentColor"/>
-          </svg>
-          &copy; 2026 The Light System. All rights reserved.
-        </div>
-        <div>
-          <a href="#">Privacy Policy</a> &nbsp;&middot;&nbsp; <a href="#">Terms of Service</a> &nbsp;&middot;&nbsp; <a href="#">Partner Agreement</a>
-        </div>
+      <div class="footer-inner">
+        <div class="footer-logo">T<span class="accent">L</span>S</div>
+        <p class="footer-tagline">Premium wellness technology backed by science. Transforming lives through innovative scalar wave solutions.</p>
+        <nav class="footer-nav">
+          <a href="#how-it-works">Process</a>
+          <a href="#products">Products</a>
+          <a href="#tiers">Tiers</a>
+          <a href="#why">Science</a>
+          <a href="#apply">Apply</a>
+          <a href="#faq">FAQ</a>
+          <a href="https://www.thelightsystems.com/" target="_blank" rel="noopener">About TLS</a>
+        </nav>
+        <div class="footer-divider"></div>
+        <p class="footer-bottom">© 2026 The Light System · All Rights Reserved</p>
       </div>
     </div>
   </footer>
@@ -1528,56 +1958,61 @@
     // FAQ Accordion
     document.querySelectorAll('.faq-question').forEach(button => {
       button.addEventListener('click', () => {
-        const item = button.parentElement;
-        const isActive = item.classList.contains('active');
-        
+        const expanded = button.getAttribute('aria-expanded') === 'true';
+        const answerId = button.getAttribute('aria-controls');
+        const answer = document.getElementById(answerId);
+
         // Close all
-        document.querySelectorAll('.faq-item').forEach(faq => {
-          faq.classList.remove('active');
-          faq.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+        document.querySelectorAll('.faq-question').forEach(b => b.setAttribute('aria-expanded', 'false'));
+        document.querySelectorAll('.faq-answer').forEach(a => {
+          a.setAttribute('aria-hidden', 'true');
+          a.style.maxHeight = '0';
         });
-        
-        // Open clicked if wasn't active
-        if (!isActive) {
-          item.classList.add('active');
+
+        // Open clicked if was closed
+        if (!expanded) {
           button.setAttribute('aria-expanded', 'true');
+          answer.setAttribute('aria-hidden', 'false');
+          answer.style.maxHeight = answer.scrollHeight + 'px';
         }
       });
     });
 
-    // Form submission handler
+    // Form submit feedback
     document.getElementById('wholesale-form').addEventListener('submit', function(e) {
       e.preventDefault();
-      
-      const btn = this.querySelector('button[type="submit"]');
-      const originalText = btn.innerHTML;
-      btn.innerHTML = 'Submitting...';
+      const btn = this.querySelector('.form-submit');
+      const original = btn.innerHTML;
+      btn.innerHTML = '✓ Application Submitted!';
+      btn.style.background = '#15be53';
+      btn.style.color = '#fff';
       btn.disabled = true;
-      
-      // Simulate submission (no backend)
       setTimeout(() => {
-        btn.innerHTML = 'Application Submitted ✓';
-        btn.style.background = '#22c55e';
-        
-        setTimeout(() => {
-          btn.innerHTML = originalText;
-          btn.style.background = '';
-          btn.disabled = false;
-          this.reset();
-        }, 3000);
-      }, 1500);
+        btn.innerHTML = original;
+        btn.style.background = '';
+        btn.style.color = '';
+        btn.disabled = false;
+        this.reset();
+      }, 3000);
     });
 
-    // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // Scroll-triggered animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
         }
       });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.product-card, .tier-card, .why-card, .step').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(el);
     });
   </script>
+
 </body>
 </html>
