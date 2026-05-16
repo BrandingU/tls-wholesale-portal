@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TLS Wholesale Portal — Exclusive Partner Access</title>
-  <meta name="description" content="Exclusive wholesale access for TLS partners. Premium wellness technology — medallions, bracelets, and devices.">
+  <title>TLS Wholesale Portal — Main-Site Theme</title>
+  <meta name="description" content="TLS Wholesale Portal, designed in the main-site visual language: pure black, violet/pink gradient accents, Questrial + Lato.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,300&family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,30;1,9..144,300..700,30&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23D4A843'/%3E%3Cpolygon points='16,5 27,16 16,27 5,16' fill='none' stroke='%23080808' stroke-width='2'/%3E%3Cpolygon points='16,11 21,16 16,21 11,16' fill='%23080808'/%3E%3C/svg%3E">
+  <link href="https://fonts.googleapis.com/css2?family=Questrial&family=Lato:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400&family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,30;1,9..144,300..700,30&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3CradialGradient id='g' cx='30%25' cy='30%25'%3E%3Cstop offset='0%25' stop-color='%23FED5FF'/%3E%3Cstop offset='60%25' stop-color='%23B05AF5'/%3E%3Cstop offset='100%25' stop-color='%235C2ED4'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='8' fill='%23000000'/%3E%3Ccircle cx='16' cy='16' r='10' fill='url(%23g)'/%3E%3C/svg%3E">
   <meta property="og:title" content="TLS Wholesale Portal — Exclusive Partner Access">
   <meta property="og:description" content="Join the TLS partner network. Premium scalar-wave wellness technology. Up to 55% device discounts, free early access for a limited time.">
   <meta property="og:type" content="website">
@@ -21,39 +21,45 @@
        DESIGN TOKENS — TLS WHOLESALE PORTAL
        ============================================= */
     :root {
-      /* Brand colors — warmer charcoal palette, not pure black */
-      --bg:           #0a0908;
-      --bg-elevated:  #131110;
-      --bg-card:      #100e0d;
-      --bg-card-hover:#171513;
+      /* TLS MAIN-SITE THEME — pure black + violet + pink + cream */
+      --bg:           #000000;
+      --bg-elevated:  #0b0a10;
+      --bg-card:      #0a090f;
+      --bg-card-hover:#11101a;
 
       /* Borders */
-      --border:       rgba(255,250,235,0.07);
-      --border-strong:rgba(255,250,235,0.14);
+      --border:       rgba(254,213,255,0.06);
+      --border-strong:rgba(254,213,255,0.14);
 
       /* Text */
       --text-primary: #ffffff;
-      --text-body:    rgba(255,250,240,0.74);
-      --text-muted:   rgba(255,250,240,0.46);
-      --text-faint:   rgba(255,250,240,0.28);
+      --text-body:    #E2E2E2;
+      --text-muted:   #8F8F8F;
+      --text-faint:   rgba(255,255,255,0.32);
 
-      /* Gold accent — TLS signature */
-      --gold:         #D4A843;
-      --gold-bright:  #F0C060;
-      --gold-dim:     #A07830;
-      --gold-subtle:  rgba(212,168,67,0.08);
-      --gold-glow:    rgba(212,168,67,0.18);
-      --gold-border:  rgba(212,168,67,0.30);
+      /* Brand accents — kept under --gold-* names so existing CSS continues to work */
+      --gold:         #B05AF5;   /* primary violet */
+      --gold-bright:  #B569DD;   /* lighter violet hover */
+      --gold-dim:     #5C2ED4;   /* deep violet */
+      --gold-subtle:  rgba(176,90,245,0.07);
+      --gold-glow:    rgba(176,90,245,0.22);
+      --gold-border:  rgba(176,90,245,0.32);
 
-      /* Tinted shadows — warm gold-tinted to match palette */
-      --shadow-sm:    0 2px 8px rgba(20,12,2,0.4);
-      --shadow-md:    0 8px 24px rgba(20,12,2,0.5), 0 2px 6px rgba(20,12,2,0.3);
-      --shadow-lg:    0 20px 60px rgba(20,12,2,0.6), 0 4px 12px rgba(20,12,2,0.35);
-      --shadow-glow:  0 16px 50px rgba(20,12,2,0.55), 0 0 40px rgba(212,168,67,0.18);
+      /* Extra TLS-main tokens used in gradients/highlights */
+      --tls-pink:     #FED5FF;
+      --tls-cream:    #F1DC89;
+      --tls-deep:     #811CD1;
 
-      /* Typography */
-      --font:         'Inter', system-ui, -apple-system, sans-serif;
-      --font-display: 'Fraunces', 'Iowan Old Style', Georgia, serif;
+      /* Tinted shadows — violet-tinted */
+      --shadow-sm:    0 2px 8px rgba(15,5,30,0.45);
+      --shadow-md:    0 8px 24px rgba(15,5,30,0.55), 0 2px 6px rgba(92,46,212,0.18);
+      --shadow-lg:    0 24px 70px rgba(15,5,30,0.6), 0 4px 12px rgba(92,46,212,0.22);
+      --shadow-glow:  0 20px 60px rgba(15,5,30,0.55), 0 0 50px rgba(176,90,245,0.30);
+
+      /* Typography — main site uses Questrial (display) + Lato (body) */
+      --font:         'Lato', system-ui, -apple-system, sans-serif;
+      --font-display: 'Questrial', 'Lato', sans-serif;
+      --font-serif:   'Fraunces', Georgia, serif;
 
       /* Spacing */
       --space-1:  4px;
@@ -97,10 +103,15 @@
 
     /* Display + numeric utilities */
     .serif {
-      font-family: var(--font-display);
+      font-family: var(--font-serif);
       font-style: italic;
       font-weight: 400;
       font-variation-settings: "opsz" 144, "SOFT" 100;
+      letter-spacing: -0.02em;
+    }
+    .display {
+      font-family: var(--font-display);
+      font-weight: 400;
       letter-spacing: -0.02em;
     }
     .tabular { font-variant-numeric: tabular-nums lining-nums; }
@@ -124,7 +135,7 @@
       pointer-events: none;
       opacity: 0.045;
       mix-blend-mode: overlay;
-      background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1  0 0 0 0 0.85  0 0 0 0 0.55  0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.97  0 0 0 0 0.84  0 0 0 0 1  0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     }
 
     /* Skip-to-content for keyboard users */
@@ -132,16 +143,16 @@
       position: absolute;
       top: -100px;
       left: var(--space-4);
-      background: var(--gold);
-      color: #080808;
+      background: linear-gradient(115deg, var(--gold), var(--tls-deep));
+      color: #ffffff;
       padding: 10px 16px;
-      border-radius: var(--r-md);
+      border-radius: var(--r-full);
       font-weight: 600;
       font-size: 0.875rem;
       z-index: 1000;
       transition: top var(--t-fast) var(--ease);
     }
-    .skip-link:focus { top: var(--space-4); color: #080808; }
+    .skip-link:focus { top: var(--space-4); color: #ffffff; }
 
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
@@ -178,7 +189,7 @@
     }
 
     ::selection {
-      background: rgba(212,168,67,0.25);
+      background: rgba(176,90,245,0.25);
       color: var(--gold-bright);
     }
 
@@ -206,8 +217,8 @@
 
     .section-alt {
       background:
-        radial-gradient(ellipse 50% 50% at 80% 20%, rgba(212,168,67,0.05), transparent 60%),
-        radial-gradient(ellipse 40% 50% at 10% 80%, rgba(212,168,67,0.025), transparent 55%),
+        radial-gradient(ellipse 50% 60% at 80% 20%, rgba(176,90,245,0.08), transparent 60%),
+        radial-gradient(ellipse 40% 50% at 10% 80%, rgba(92,46,212,0.06), transparent 55%),
         var(--bg-elevated);
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
@@ -246,17 +257,18 @@
     .nav-logo-mark {
       width: 34px;
       height: 34px;
-      background: var(--gold);
-      border-radius: var(--r-sm);
+      background: radial-gradient(circle at 30% 30%, var(--tls-pink), var(--gold) 55%, var(--tls-deep));
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
+      box-shadow: 0 0 18px rgba(176,90,245,0.45);
     }
 
     .nav-logo-mark svg {
       width: 18px;
       height: 18px;
-      fill: #080808;
+      fill: rgba(0,0,0,0.85);
     }
 
     .nav-logo span {
@@ -296,27 +308,28 @@
       display: inline-flex;
       align-items: center;
       gap: var(--space-2);
-      background: var(--gold);
-      color: #080808;
+      background: linear-gradient(115deg, var(--gold), var(--tls-deep));
+      color: #ffffff;
       font-size: 0.8125rem;
-      font-weight: 600;
+      font-weight: 700;
       padding: 9px 18px;
-      border-radius: var(--r-md);
+      border-radius: var(--r-full);
       transition: all var(--t-base) var(--ease);
       letter-spacing: 0.01em;
+      box-shadow: 0 4px 18px rgba(176,90,245,0.35);
     }
 
     .nav-cta:hover {
-      background: var(--gold-bright);
-      color: #080808;
+      background: linear-gradient(115deg, var(--tls-pink), var(--gold));
+      color: #1a0530;
       transform: translateY(-1px);
-      box-shadow: 0 4px 20px var(--gold-glow);
+      box-shadow: 0 6px 22px rgba(176,90,245,0.5);
     }
 
     .nav-cta svg {
       width: 14px;
       height: 14px;
-      stroke: #080808;
+      stroke: currentColor;
       fill: none;
       stroke-width: 2.5;
       stroke-linecap: round;
@@ -340,22 +353,18 @@
       overflow: hidden;
     }
 
-    /* Ambient radial glow behind hero */
+    /* Ambient mesh gradient behind hero — signature TLS-main aesthetic */
     .hero::before {
       content: '';
       position: absolute;
-      top: -10%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 900px;
-      height: 700px;
+      inset: 0;
       background:
-        radial-gradient(ellipse at 50% 40%,
-          rgba(212,168,67,0.07) 0%,
-          rgba(212,168,67,0.03) 35%,
-          transparent 65%
-        );
+        radial-gradient(ellipse 60% 60% at 80% 20%, rgba(176,90,245,0.22) 0%, transparent 55%),
+        radial-gradient(ellipse 50% 50% at 15% 30%, rgba(254,213,255,0.10) 0%, transparent 50%),
+        radial-gradient(ellipse 70% 50% at 30% 90%, rgba(92,46,212,0.18) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 70% 75%, rgba(241,220,137,0.06) 0%, transparent 55%);
       pointer-events: none;
+      filter: blur(20px);
     }
 
     /* Geometric grid dots */
@@ -404,10 +413,11 @@
     }
 
     .hero-headline {
-      font-size: clamp(2.75rem, 6.2vw, 5.25rem);
-      font-weight: 600;
-      line-height: 0.98;
-      letter-spacing: -0.04em;
+      font-family: var(--font-display);
+      font-size: clamp(2.75rem, 6.5vw, 5.5rem);
+      font-weight: 400;
+      line-height: 1.0;
+      letter-spacing: -0.035em;
       color: var(--text-primary);
       margin-bottom: var(--space-6);
       text-wrap: balance;
@@ -418,22 +428,18 @@
     }
 
     .hero-headline-line .accent {
-      font-family: var(--font-display);
-      font-style: italic;
-      font-weight: 400;
-      font-variation-settings: "opsz" 144, "SOFT" 100;
-      color: var(--gold);
-      letter-spacing: -0.025em;
+      background: linear-gradient(115deg, var(--tls-pink), var(--gold), var(--tls-deep));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
       padding-right: 0.06em;
     }
 
     .hero-headline-line:last-child {
-      color: var(--gold);
-      font-family: var(--font-display);
-      font-style: italic;
-      font-weight: 400;
-      font-variation-settings: "opsz" 144, "SOFT" 100;
-      letter-spacing: -0.025em;
+      background: linear-gradient(115deg, var(--tls-pink), var(--gold) 40%, var(--tls-deep));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
 
     .hero-description {
@@ -456,29 +462,30 @@
       display: inline-flex;
       align-items: center;
       gap: var(--space-2);
-      background: var(--gold);
-      color: #080808;
+      background: linear-gradient(115deg, var(--gold), var(--tls-deep));
+      color: #ffffff;
       font-size: 0.9375rem;
-      font-weight: 600;
+      font-weight: 700;
       padding: 14px 28px;
-      border-radius: var(--r-md);
+      border-radius: var(--r-full);
       border: none;
       cursor: pointer;
       transition: all var(--t-base) var(--ease);
       letter-spacing: 0.01em;
+      box-shadow: 0 4px 18px rgba(176,90,245,0.35);
     }
 
     .btn-primary:hover {
-      background: var(--gold-bright);
-      color: #080808;
+      background: linear-gradient(115deg, var(--tls-pink), var(--gold));
+      color: #1a0530;
       transform: translateY(-2px);
-      box-shadow: 0 8px 30px var(--gold-glow);
+      box-shadow: 0 12px 40px rgba(176,90,245,0.55);
     }
 
     .btn-primary svg {
       width: 16px;
       height: 16px;
-      stroke: #080808;
+      stroke: currentColor;
       fill: none;
       stroke-width: 2.5;
       stroke-linecap: round;
@@ -591,30 +598,32 @@
       position: absolute;
       inset: 0;
       border-radius: 50%;
-      background: radial-gradient(circle at 35% 35%,
-        rgba(212,168,67,0.15) 0%,
-        rgba(212,168,67,0.05) 40%,
-        rgba(212,168,67,0.02) 70%,
+      background: radial-gradient(circle at 35% 30%,
+        rgba(254,213,255,0.38) 0%,
+        rgba(176,90,245,0.22) 25%,
+        rgba(92,46,212,0.10) 55%,
         transparent 100%
       );
-      border: 1px solid rgba(212,168,67,0.2);
+      border: 1px solid rgba(176,90,245,0.32);
       display: flex;
       align-items: center;
       justify-content: center;
       box-shadow:
-        0 0 60px rgba(212,168,67,0.12),
-        inset 0 0 60px rgba(212,168,67,0.06);
+        0 0 90px rgba(176,90,245,0.30),
+        0 0 40px rgba(254,213,255,0.18),
+        inset 0 0 70px rgba(176,90,245,0.10);
     }
 
     .hero-core-inner svg {
       width: 80px;
       height: 80px;
-      stroke: var(--gold);
+      stroke: var(--tls-pink);
       fill: none;
       stroke-width: 1;
       stroke-linecap: round;
       stroke-linejoin: round;
-      opacity: 0.9;
+      opacity: 1;
+      filter: drop-shadow(0 0 10px rgba(254,213,255,0.45));
     }
 
     .hero-urgency-banner {
@@ -622,8 +631,8 @@
       bottom: -16px;
       left: 50%;
       transform: translateX(-50%);
-      background: var(--gold);
-      color: #080808;
+      background: linear-gradient(115deg, var(--tls-pink), var(--gold), var(--tls-deep));
+      color: #ffffff;
       font-size: 0.75rem;
       font-weight: 700;
       letter-spacing: 0.05em;
@@ -631,7 +640,7 @@
       padding: 8px 20px;
       border-radius: var(--r-full);
       white-space: nowrap;
-      box-shadow: 0 4px 20px var(--gold-glow);
+      box-shadow: 0 8px 28px rgba(176,90,245,0.5);
     }
 
     .hero-urgency-banner span {
@@ -658,12 +667,13 @@
     }
 
     .section-title {
-      font-size: clamp(1.875rem, 3.5vw, 2.75rem);
-      font-weight: 700;
-      letter-spacing: -0.025em;
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.25rem);
+      font-weight: 400;
+      letter-spacing: -0.03em;
       color: var(--text-primary);
       margin-bottom: var(--space-4);
-      line-height: 1.15;
+      line-height: 1.1;
     }
 
     .section-subtitle {
@@ -728,7 +738,7 @@
       border-color: var(--gold);
       box-shadow:
         0 0 0 8px var(--bg-elevated),
-        0 0 50px rgba(212,168,67,0.3);
+        0 0 50px rgba(176,90,245,0.3);
       transform: scale(1.05);
     }
 
@@ -790,7 +800,7 @@
       inset: 0;
       background: radial-gradient(
         circle at 80% 20%,
-        rgba(212,168,67,0.06) 0%,
+        rgba(176,90,245,0.06) 0%,
         transparent 50%
       );
       opacity: 0;
@@ -815,7 +825,7 @@
       border-color: var(--gold-border);
       background: linear-gradient(
         135deg,
-        rgba(212,168,67,0.04) 0%,
+        rgba(176,90,245,0.04) 0%,
         var(--bg-card) 60%
       );
     }
@@ -826,8 +836,8 @@
       position: absolute;
       top: var(--space-4);
       right: var(--space-4);
-      background: var(--gold);
-      color: #080808;
+      background: linear-gradient(115deg, var(--tls-pink), var(--gold));
+      color: #1a0530;
       font-size: 0.5625rem;
       font-weight: 700;
       letter-spacing: 0.1em;
@@ -862,15 +872,15 @@
     }
 
     .product-card:hover .product-icon {
-      background: rgba(212,168,67,0.15);
-      border-color: rgba(212,168,67,0.5);
+      background: rgba(176,90,245,0.15);
+      border-color: rgba(176,90,245,0.5);
       transform: translateY(-2px);
       box-shadow: 0 4px 20px var(--gold-glow);
     }
 
     .product-card:hover .product-icon svg {
       stroke: var(--gold-bright);
-      filter: drop-shadow(0 0 8px rgba(212,168,67,0.5));
+      filter: drop-shadow(0 0 8px rgba(176,90,245,0.5));
     }
 
     .product-card h3 {
@@ -946,7 +956,7 @@
       border-color: var(--gold-border);
       background: linear-gradient(
         160deg,
-        rgba(212,168,67,0.05) 0%,
+        rgba(176,90,245,0.05) 0%,
         var(--bg-card) 50%
       );
     }
@@ -963,8 +973,8 @@
       top: -1px;
       left: 50%;
       transform: translateX(-50%);
-      background: var(--gold);
-      color: #080808;
+      background: linear-gradient(115deg, var(--tls-pink), var(--gold), var(--tls-deep));
+      color: #ffffff;
       font-size: 0.625rem;
       font-weight: 700;
       letter-spacing: 0.1em;
@@ -1490,8 +1500,8 @@
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(ellipse at 30% 50%, rgba(212,168,67,0.05) 0%, transparent 50%),
-        radial-gradient(ellipse at 70% 50%, rgba(212,168,67,0.03) 0%, transparent 50%);
+        radial-gradient(ellipse at 30% 50%, rgba(176,90,245,0.05) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 50%, rgba(176,90,245,0.03) 0%, transparent 50%);
       pointer-events: none;
     }
 
@@ -1510,7 +1520,7 @@
       display: inline-flex;
       align-items: center;
       gap: var(--space-2);
-      background: rgba(212,168,67,0.12);
+      background: rgba(176,90,245,0.12);
       border: 1px solid var(--gold-border);
       color: var(--gold-bright);
       font-size: 0.6875rem;
@@ -1531,16 +1541,21 @@
     }
 
     .supercharger-headline {
-      font-size: clamp(1.75rem, 3vw, 2.5rem);
-      font-weight: 700;
-      letter-spacing: -0.025em;
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3.4vw, 3rem);
+      font-weight: 400;
+      letter-spacing: -0.03em;
       color: var(--text-primary);
       margin-bottom: var(--space-5);
-      line-height: 1.15;
+      line-height: 1.1;
     }
 
-    .supercharger-headline span {
-      color: var(--gold);
+    .supercharger-headline span,
+    .supercharger-headline .serif {
+      background: linear-gradient(115deg, var(--tls-pink), var(--gold), var(--tls-deep));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
 
     .supercharger-description {
@@ -1597,25 +1612,25 @@
       position: absolute;
       inset: 0;
       border-radius: 50%;
-      border: 1px solid rgba(212,168,67,0.15);
+      border: 1px solid rgba(176,90,245,0.15);
       animation: pulse-ring 3s ease-in-out infinite;
     }
 
     .supercharger-ring:nth-child(2) {
       inset: 20px;
-      border-color: rgba(212,168,67,0.2);
+      border-color: rgba(176,90,245,0.2);
       animation-delay: 0.5s;
     }
 
     .supercharger-ring:nth-child(3) {
       inset: 40px;
-      border-color: rgba(212,168,67,0.25);
+      border-color: rgba(176,90,245,0.25);
       animation-delay: 1s;
     }
 
     .supercharger-ring:nth-child(4) {
       inset: 60px;
-      border-color: rgba(212,168,67,0.3);
+      border-color: rgba(176,90,245,0.3);
       animation-delay: 1.5s;
     }
 
@@ -1633,15 +1648,15 @@
       height: 160px;
       border-radius: 50%;
       background: radial-gradient(circle at 35% 35%,
-        rgba(212,168,67,0.2) 0%,
-        rgba(212,168,67,0.08) 50%,
+        rgba(176,90,245,0.2) 0%,
+        rgba(176,90,245,0.08) 50%,
         transparent 80%
       );
-      border: 1px solid rgba(212,168,67,0.3);
+      border: 1px solid rgba(176,90,245,0.3);
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 0 50px rgba(212,168,67,0.15);
+      box-shadow: 0 0 50px rgba(176,90,245,0.15);
     }
 
     .supercharger-core svg {
@@ -1961,7 +1976,7 @@
        CUSTOM TIER
        ============================================= */
     .custom-tier-banner {
-      background: linear-gradient(135deg, rgba(212,168,67,0.06) 0%, rgba(212,168,67,0.02) 100%);
+      background: linear-gradient(135deg, rgba(176,90,245,0.06) 0%, rgba(176,90,245,0.02) 100%);
       border: 1px solid var(--gold-border);
       border-radius: var(--r-2xl);
       padding: var(--space-8);
@@ -2173,7 +2188,7 @@
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
       background:
-        linear-gradient(180deg, transparent, rgba(212,168,67,0.015) 50%, transparent),
+        linear-gradient(180deg, transparent, rgba(176,90,245,0.015) 50%, transparent),
         var(--bg);
       overflow: hidden;
     }
@@ -2250,14 +2265,15 @@
     .stats-bar-number {
       font-family: var(--font-display);
       font-weight: 400;
-      font-style: italic;
-      font-size: clamp(2.25rem, 4.5vw, 3.25rem);
+      font-size: clamp(2.25rem, 4.5vw, 3.5rem);
       line-height: 1;
-      color: var(--gold);
+      background: linear-gradient(135deg, var(--tls-pink), var(--gold));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
       letter-spacing: -0.04em;
       font-variant-numeric: tabular-nums;
       margin-bottom: 10px;
-      font-variation-settings: "opsz" 144, "SOFT" 100;
     }
     .stats-bar-label {
       font-size: 0.75rem;
@@ -2300,7 +2316,7 @@
     .testimonial.featured {
       grid-row: span 2;
       background:
-        radial-gradient(ellipse at top right, rgba(212,168,67,0.07), transparent 60%),
+        radial-gradient(ellipse at top right, rgba(176,90,245,0.07), transparent 60%),
         var(--bg-card);
       border-color: var(--gold-border);
     }
@@ -2309,24 +2325,24 @@
       font-size: 1.0625rem;
       line-height: 1.55;
       color: var(--text-primary);
-      font-weight: 350;
+      font-weight: 400;
       letter-spacing: -0.005em;
     }
     .testimonial.featured .testimonial-quote {
       font-size: 1.5rem;
       line-height: 1.4;
-      font-weight: 350;
+      font-weight: 400;
     }
     .testimonial-quote::before {
       content: '"';
-      font-family: var(--font-display);
+      font-family: var(--font-serif);
       font-style: italic;
       font-size: 3rem;
       line-height: 0;
       color: var(--gold);
       vertical-align: -0.4em;
       margin-right: 4px;
-      opacity: 0.5;
+      opacity: 0.6;
     }
     .testimonial-attribution {
       display: flex;
@@ -2338,18 +2354,18 @@
     .testimonial-avatar {
       width: 40px;
       height: 40px;
-      border-radius: var(--r-md);
-      background: linear-gradient(135deg, var(--gold-dim), var(--gold));
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, var(--tls-pink), var(--gold), var(--tls-deep));
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 0.8125rem;
-      font-weight: 600;
-      color: #0a0908;
-      letter-spacing: -0.01em;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 0.01em;
       font-family: var(--font-display);
-      font-style: italic;
       flex-shrink: 0;
+      box-shadow: 0 0 18px rgba(176,90,245,0.4);
     }
     .testimonial-meta {
       display: flex;
@@ -2408,8 +2424,8 @@
       grid-column: span 3;
       grid-row: span 2;
       background:
-        radial-gradient(ellipse at 30% 20%, rgba(212,168,67,0.12), transparent 55%),
-        radial-gradient(ellipse at 80% 90%, rgba(212,168,67,0.06), transparent 50%),
+        radial-gradient(ellipse at 30% 20%, rgba(176,90,245,0.12), transparent 55%),
+        radial-gradient(ellipse at 80% 90%, rgba(176,90,245,0.06), transparent 50%),
         var(--bg-card);
       border-color: var(--gold-border);
       min-height: 380px;
@@ -2435,29 +2451,31 @@
     }
     .bento-big-number {
       font-family: var(--font-display);
-      font-style: italic;
       font-weight: 400;
-      font-variation-settings: "opsz" 144, "SOFT" 100;
-      font-size: clamp(4rem, 9vw, 7.5rem);
+      font-size: clamp(4rem, 9vw, 8rem);
       line-height: 0.9;
       letter-spacing: -0.05em;
-      color: var(--gold);
+      background: linear-gradient(135deg, var(--tls-pink), var(--gold), var(--tls-deep));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
       font-variant-numeric: tabular-nums;
       margin-bottom: var(--space-5);
     }
     .bento-headline {
-      font-size: 1.5rem;
-      font-weight: 600;
+      font-family: var(--font-display);
+      font-size: 1.625rem;
+      font-weight: 400;
       color: var(--text-primary);
-      letter-spacing: -0.02em;
+      letter-spacing: -0.025em;
       line-height: 1.15;
       margin-bottom: var(--space-3);
     }
     .bento-headline .accent {
-      font-family: var(--font-display);
-      font-style: italic;
-      font-weight: 400;
-      color: var(--gold);
+      background: linear-gradient(115deg, var(--tls-pink), var(--gold));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
     .bento-body {
       font-size: 0.9375rem;
@@ -2466,11 +2484,13 @@
     }
     .bento-cell.compact .bento-stat {
       font-family: var(--font-display);
-      font-style: italic;
       font-weight: 400;
-      font-size: clamp(2.5rem, 5vw, 3.75rem);
+      font-size: clamp(2.5rem, 5vw, 4rem);
       line-height: 1;
-      color: var(--gold);
+      background: linear-gradient(135deg, var(--tls-pink), var(--gold));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
       letter-spacing: -0.04em;
       font-variant-numeric: tabular-nums;
       margin-bottom: var(--space-3);
@@ -2483,17 +2503,19 @@
     }
     .bento-cell.researcher {
       background:
-        linear-gradient(135deg, rgba(212,168,67,0.05), transparent 60%),
+        linear-gradient(135deg, rgba(176,90,245,0.05), transparent 60%),
         var(--bg-card);
     }
     .researcher-name {
       font-family: var(--font-display);
-      font-style: italic;
       font-weight: 400;
-      font-size: 2rem;
+      font-size: 2.25rem;
       line-height: 1;
-      letter-spacing: -0.025em;
-      color: var(--gold);
+      letter-spacing: -0.03em;
+      background: linear-gradient(115deg, var(--tls-pink), var(--gold));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
       margin-bottom: var(--space-2);
     }
     .researcher-credentials {
@@ -2629,14 +2651,21 @@
     /* Sentence-case heading variants (override Title Case feel) */
     .section-title {
       text-wrap: balance;
+      font-family: var(--font-display);
+      font-weight: 400;
+      letter-spacing: -0.03em;
     }
     .section-title em, .section-title .accent {
-      font-family: var(--font-display);
+      font-family: var(--font-serif);
       font-style: italic;
       font-weight: 400;
       color: var(--gold);
+      background: linear-gradient(115deg, var(--tls-pink), var(--gold), var(--tls-deep));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
       font-variation-settings: "opsz" 144, "SOFT" 100;
-      letter-spacing: -0.025em;
+      letter-spacing: -0.015em;
     }
 
     /* Asymmetric section header variant */
@@ -2678,7 +2707,7 @@
     .supercharger-stat-number { font-variant-numeric: tabular-nums lining-nums; }
     .pricing-table tr.updated td { animation: row-pulse 600ms var(--ease-expressive); }
     @keyframes row-pulse {
-      0%   { background: rgba(212,168,67,0.10); }
+      0%   { background: rgba(176,90,245,0.10); }
       100% { background: transparent; }
     }
 
@@ -2799,7 +2828,7 @@
     }
 
     /* Hero urgency banner refinement */
-    .hero-urgency-banner { box-shadow: 0 8px 28px rgba(212,168,67,0.35); }
+    .hero-urgency-banner { box-shadow: 0 8px 28px rgba(176,90,245,0.35); }
 
     /* Nav active state */
     .nav a.is-active { color: var(--gold); }
@@ -2831,8 +2860,8 @@
     }
     .theme-switch-btn:hover { color: var(--text-primary); }
     .theme-switch-btn.is-on {
-      background: var(--gold);
-      color: #080808;
+      background: linear-gradient(115deg, var(--gold), var(--tls-deep));
+      color: #ffffff;
     }
     @media (max-width: 768px) {
       .theme-switch { display: none; }
@@ -2859,8 +2888,8 @@
         </a>
         <div class="nav-right">
           <div class="theme-switch" role="group" aria-label="Theme">
-            <a href="index.html" class="theme-switch-btn is-on" data-theme="gold">Gold</a>
-            <a href="index-tls-theme.html" class="theme-switch-btn" data-theme="violet">Violet</a>
+            <a href="index.html" class="theme-switch-btn" data-theme="gold">Gold</a>
+            <a href="index-tls-theme.html" class="theme-switch-btn is-on" data-theme="violet">Violet</a>
           </div>
           <div class="nav-badge">
             <span class="nav-badge-dot"></span>
@@ -2926,16 +2955,16 @@
           <div class="hero-visual-orb">
             <div class="hero-rings">
               <svg viewBox="0 0 420 420" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="210" cy="210" r="180" stroke="rgba(212,168,67,0.12)" stroke-width="1"/>
-                <circle cx="210" cy="210" r="140" stroke="rgba(212,168,67,0.18)" stroke-width="1" stroke-dasharray="4 8"/>
-                <circle cx="210" cy="210" r="100" stroke="rgba(212,168,67,0.25)" stroke-width="0.75"/>
+                <circle cx="210" cy="210" r="180" stroke="rgba(176,90,245,0.12)" stroke-width="1"/>
+                <circle cx="210" cy="210" r="140" stroke="rgba(176,90,245,0.18)" stroke-width="1" stroke-dasharray="4 8"/>
+                <circle cx="210" cy="210" r="100" stroke="rgba(176,90,245,0.25)" stroke-width="0.75"/>
                 <g transform="translate(210,210)">
-                  <polygon points="0,-90 78,45 -78,45" stroke="rgba(212,168,67,0.2)" stroke-width="0.75" fill="none"/>
-                  <polygon points="0,90 -78,-45 78,-45" stroke="rgba(212,168,67,0.2)" stroke-width="0.75" fill="none"/>
+                  <polygon points="0,-90 78,45 -78,45" stroke="rgba(176,90,245,0.2)" stroke-width="0.75" fill="none"/>
+                  <polygon points="0,90 -78,-45 78,-45" stroke="rgba(176,90,245,0.2)" stroke-width="0.75" fill="none"/>
                 </g>
-                <circle cx="80" cy="80" r="3" fill="rgba(212,168,67,0.6)"/>
-                <circle cx="340" cy="340" r="2" fill="rgba(212,168,67,0.4)"/>
-                <circle cx="360" cy="130" r="1.5" fill="rgba(212,168,67,0.3)"/>
+                <circle cx="80" cy="80" r="3" fill="rgba(176,90,245,0.6)"/>
+                <circle cx="340" cy="340" r="2" fill="rgba(176,90,245,0.4)"/>
+                <circle cx="360" cy="130" r="1.5" fill="rgba(176,90,245,0.3)"/>
               </svg>
             </div>
             <div class="hero-core">
@@ -2945,7 +2974,7 @@
                   <polygon points="40,6 70,40 40,74 10,40" stroke-width="1.5"/>
                   <polygon points="40,18 58,40 40,62 22,40" stroke-width="1"/>
                   <circle cx="40" cy="40" r="6" stroke-width="1.5"/>
-                  <circle cx="40" cy="40" r="2" fill="#D4A843" stroke="none"/>
+                  <circle cx="40" cy="40" r="2" fill="#FED5FF" stroke="none"/>
                 </svg>
               </div>
               <div class="hero-urgency-banner">
@@ -3060,7 +3089,7 @@
                 <polygon points="40,8 70,40 40,72 10,40"/>
                 <polygon points="40,18 58,40 40,62 22,40"/>
                 <circle cx="40" cy="40" r="5" stroke-width="1.5"/>
-                <circle cx="40" cy="40" r="2" fill="#D4A843" stroke="none"/>
+                <circle cx="40" cy="40" r="2" fill="#FED5FF" stroke="none"/>
                 <line x1="40" y1="8" x2="40" y2="18" stroke-width="1" opacity="0.5"/>
                 <line x1="40" y1="62" x2="40" y2="72" stroke-width="1" opacity="0.5"/>
                 <line x1="10" y1="40" x2="22" y2="40" stroke-width="1" opacity="0.5"/>
@@ -3944,7 +3973,7 @@
       <div class="footer-grid">
         <div class="footer-brand-block">
           <div class="footer-logo">
-            <svg viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#D4A843"/><polygon points="16,5 27,16 16,27 5,16" fill="none" stroke="#080808" stroke-width="2"/><polygon points="16,11 21,16 16,21 11,16" fill="#080808"/></svg>
+            <svg viewBox="0 0 32 32"><defs><radialGradient id="fg" cx="30%" cy="30%"><stop offset="0%" stop-color="#FED5FF"/><stop offset="55%" stop-color="#B05AF5"/><stop offset="100%" stop-color="#5C2ED4"/></radialGradient></defs><rect width="32" height="32" rx="8" fill="#000000"/><circle cx="16" cy="16" r="10" fill="url(#fg)"/></svg>
             TLS Wholesale
           </div>
           <p class="footer-tagline">Wholesale access to the scalar-wave wellness technology that 540+ operators already stock — built on three decades of bioenergetic research.</p>
